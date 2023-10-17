@@ -1,3 +1,26 @@
 <resources>
+
     <string name="app_name">SendTo</string>
+    <string name="or">or</string>
+
+    <!--Examples strings-->
+    <string name="main_app_name">SendTo...</string>
+    <string name="username_example">Username</string>
+    <string name="email_example">email@example.com</string>
+    <string name="phone_example">+375291234567</string>
+    <string name="password_example">Password</string>
+
+    <!--Button strings-->
+    <string name="google_button">Use Google account</string>
+    <string name="sign_up_button">Sign up</string>
+    <string name="sign_in_button">Sign in</string>
+
+    <!--Clickable text strings-->
+    <string name="sign_in_text_button">Already have an account? Sign in</string>
+    <string name="sign_up_text_button">Dont have account? Sign up</string>
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>
