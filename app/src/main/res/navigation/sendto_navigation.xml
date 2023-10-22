@@ -41,5 +41,36 @@
         android:id="@+id/statisticsFragment"
         android:name="com.zalomsky.sendto.presentation.user.statistics.StatisticsFragment"
         android:label="fragment_statistics"
-        tools:layout="@layout/fragment_statistics" />
+        tools:layout="@layout/fragment_statistics" >
+        <action
+            android:id="@+id/action_statisticsFragment_to_profileFragment"
+            app:destination="@id/profileFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_statisticsFragment_to_googleProfileFragment2"
+            app:destination="@id/googleProfileFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_statisticsFragment_to_sendFragment"
+            app:destination="@id/sendFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.zalomsky.sendto.presentation.common.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/googleProfileFragment"
+        android:name="com.zalomsky.sendto.presentation.common.profile.google.GoogleProfileFragment"
+        android:label="fragment_google_profile"
+        tools:layout="@layout/fragment_google_profile" />
+    <fragment
+        android:id="@+id/sendFragment"
+        android:name="com.zalomsky.sendto.presentation.user.send.SendFragment"
+        android:label="fragment_send"
+        tools:layout="@layout/fragment_send" />
 </navigation>

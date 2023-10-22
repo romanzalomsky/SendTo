@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <group android:checkableBehavior="single">
+
+        <item android:title="@string/navigation_profile">
+
+            <menu>
+                <item
+                    android:id="@+id/nav_profile"
+                    android:icon="@drawable/profile"
+                    android:title="@string/navigation_profile" />
+            </menu>
+        </item>
+
+    </group>
+
+    <item
+        android:title="@string/navigation_database">
+        <menu>
+            <item
+                android:id="@+id/nav_client_databases"
+                android:icon="@drawable/database"
+                android:title="@string/navigation_client_databases"/>
+        </menu>
+    </item>
+
+    <item
+        android:title="@string/navigation_send">
+        <menu>
+            <item
+                android:id="@+id/nav_statistics"
+                android:icon="@drawable/statistics"
+                android:title="@string/navigation_statistics"
+                app:actionLayout="@layout/menu_item_layout"
+                app:actionViewClass="androidx.appcompat.widget.LinearLayoutCompat"/>
+            <item
+                android:id="@+id/nav_my_sends"
+                android:icon="@drawable/my_sends"
+                android:title="@string/navigation_my_sends"/>
+            <item
+                android:id="@+id/nav_my_send"
+                android:icon="@drawable/send"
+                android:title="@string/navigation_send" />
+        </menu>
+    </item>
+</menu>

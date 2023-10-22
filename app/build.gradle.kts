@@ -3,6 +3,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.kapt")
     id("com.google.dagger.hilt.android")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -59,6 +60,7 @@ dependencies {
 
     //Paging
     implementation("androidx.paging:paging-compose:3.2.0")
+    implementation("com.google.firebase:firebase-auth:22.2.0")
 
     //Room
     kapt ("androidx.room:room-compiler:2.5.1")

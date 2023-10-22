@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "337562264595",
+    "project_id": "sendto-11838",
+    "storage_bucket": "sendto-11838.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:337562264595:android:a3c4f674493c2578474be6",
+        "android_client_info": {
+          "package_name": "com.zalomsky.sendto"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2Vf97xMIcHcHeeBjs3QmsxfCjRMA4DAQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
