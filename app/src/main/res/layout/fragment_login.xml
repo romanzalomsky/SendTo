@@ -21,52 +21,70 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/sign_in_email_input"
-        android:layout_width="313dp"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layout_sign_in_email_input"
+        android:layout_width="330dp"
         android:layout_height="58dp"
         android:layout_marginTop="172dp"
         android:ems="10"
         android:fontFamily="@font/splinesansmedium"
         android:inputType="text"
-        android:text="@string/email_example"
+        android:hint="@string/email_example"
+        app:startIconDrawable="@drawable/email"
         app:layout_constraintEnd_toEndOf="@+id/textView3"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="@+id/textView3"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/textView3" >
 
-    <EditText
-        android:id="@+id/sign_in_password_input"
-        android:layout_width="313dp"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/sign_in_email_input"
+            android:layout_width="330dp"
+            android:layout_height="wrap_content">
+
+        </com.google.android.material.textfield.TextInputEditText>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layout_sign_in_password_input"
+        android:layout_width="330dp"
         android:layout_height="58dp"
         android:layout_marginTop="16dp"
         android:ems="10"
         android:inputType="text"
-        android:text="@string/password_example"
+        android:hint="@string/password_example"
         android:fontFamily="@font/splinesansmedium"
-        app:layout_constraintEnd_toEndOf="@+id/sign_in_email_input"
+        app:startIconDrawable="@drawable/password"
+        app:layout_constraintEnd_toEndOf="@+id/layout_sign_in_email_input"
         app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="@+id/sign_in_email_input"
-        app:layout_constraintTop_toBottomOf="@+id/sign_in_email_input" />
+        app:layout_constraintStart_toStartOf="@+id/layout_sign_in_email_input"
+        app:layout_constraintTop_toBottomOf="@+id/layout_sign_in_email_input" >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/sign_in_password_input"
+            android:layout_width="330dp"
+            android:layout_height="wrap_content">
+
+        </com.google.android.material.textfield.TextInputEditText>
+    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/sign_in_google_button"
         android:layout_width="315dp"
         android:layout_height="65dp"
-        android:layout_marginTop="92dp"
-        android:text="@string/google_button"
+        android:layout_marginTop="124dp"
         android:backgroundTint="@color/white"
         android:fontFamily="@font/splinesansmedium"
         android:shadowColor="@color/black"
+        android:text="@string/google_button"
         android:textColor="@color/black"
         android:textSize="15sp"
         app:cornerRadius="15dp"
-        app:layout_constraintEnd_toEndOf="@+id/sign_in_password_input"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="@+id/sign_in_password_input"
-        app:layout_constraintTop_toBottomOf="@+id/sign_in_password_input"
+        app:layout_constraintEnd_toEndOf="@+id/layout_sign_in_password_input"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toStartOf="@+id/layout_sign_in_password_input"
+        app:layout_constraintTop_toBottomOf="@+id/layout_sign_in_password_input"
         app:strokeColor="@color/black"
-        app:strokeWidth="1dp"/>
+        app:strokeWidth="1dp" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/sign_in_button"

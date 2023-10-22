@@ -7,11 +7,11 @@
     tools:context=".presentation.common.auth.AuthFragment">
 
 
-    <com.google.android.material.button.MaterialButton
+    <Button
         android:id="@+id/google_button"
-        android:layout_width="315dp"
+        android:layout_width="330dp"
         android:layout_height="65dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="30dp"
         android:backgroundTint="@color/white"
         android:fontFamily="@font/splinesansmedium"
         android:shadowColor="@color/black"
@@ -26,48 +26,93 @@
         app:strokeColor="@color/black"
         app:strokeWidth="1dp" />
 
-    <EditText
-        android:id="@+id/password_editText"
-        android:layout_width="313dp"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layout_password_editText"
+        android:layout_width="330dp"
         android:layout_height="58dp"
         android:layout_marginTop="16dp"
         android:ems="10"
         android:inputType="text"
-        android:text="@string/password_example"
+        android:hint="@string/password_example"
         android:fontFamily="@font/splinesansmedium"
-        app:layout_constraintEnd_toEndOf="@+id/phone_editText"
+        app:startIconDrawable="@drawable/password"
+        app:layout_constraintEnd_toEndOf="@+id/layout_phone_editText"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/phone_editText"
-        app:layout_constraintTop_toBottomOf="@+id/phone_editText" />
+        app:layout_constraintStart_toStartOf="@+id/layout_phone_editText"
+        app:layout_constraintTop_toBottomOf="@+id/layout_phone_editText" >
 
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/password_editText"
+            android:layout_width="330dp"
+            android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/phone_editText"
-        android:layout_width="313dp"
+        </com.google.android.material.textfield.TextInputEditText>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layout_confirm_password_editText"
+        android:layout_width="330dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/splinesansmedium"
+        android:hint="@string/confirm_password_example"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="@+id/layout_password_editText"
+        app:layout_constraintStart_toStartOf="@+id/layout_password_editText"
+        app:layout_constraintTop_toBottomOf="@+id/layout_password_editText"
+        app:startIconDrawable="@drawable/password">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/confirm_password_editText"
+            android:layout_width="330dp"
+            android:layout_height="wrap_content">
+
+        </com.google.android.material.textfield.TextInputEditText>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layout_phone_editText"
+        android:layout_width="330dp"
         android:layout_height="58dp"
         android:layout_marginTop="16dp"
         android:ems="10"
         android:inputType="text"
-        android:text="@string/phone_example"
+        android:hint="@string/phone_example"
         android:fontFamily="@font/splinesansmedium"
-        app:layout_constraintEnd_toEndOf="@+id/email_editText"
+        app:startIconDrawable="@drawable/phone"
+        app:layout_constraintEnd_toEndOf="@+id/layout_email_editText"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/email_editText"
-        app:layout_constraintTop_toBottomOf="@+id/email_editText" />
+        app:layout_constraintStart_toStartOf="@+id/layout_email_editText"
+        app:layout_constraintTop_toBottomOf="@+id/layout_email_editText" >
 
-    <EditText
-        android:id="@+id/email_editText"
-        android:layout_width="313dp"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/phone_editText"
+            android:layout_width="330dp"
+            android:layout_height="wrap_content">
+
+        </com.google.android.material.textfield.TextInputEditText>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layout_email_editText"
+        android:layout_width="330dp"
         android:layout_height="58dp"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:inputType="text"
+        android:layout_marginTop="70dp"
         android:fontFamily="@font/splinesansmedium"
-        android:text="@string/email_example"
-        app:layout_constraintEnd_toEndOf="@+id/username_editText"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/username_editText"
-        app:layout_constraintTop_toBottomOf="@+id/username_editText" />
+        android:hint="@string/email_example"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="@+id/textView"
+        app:layout_constraintStart_toStartOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:startIconDrawable="@drawable/email">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/email_editText"
+            android:layout_width="330dp"
+            android:layout_height="wrap_content">
+
+        </com.google.android.material.textfield.TextInputEditText>
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/textView"
@@ -83,23 +128,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/username_editText"
-        android:layout_width="313dp"
-        android:layout_height="58dp"
-        android:layout_marginTop="64dp"
-        android:ems="10"
-        android:fontFamily="@font/splinesansmedium"
-        android:inputType="text"
-        android:text="@string/username_example"
-        app:layout_constraintEnd_toEndOf="@+id/textView"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
-
     <com.google.android.material.button.MaterialButton
         android:id="@+id/sign_up_button"
-        android:layout_width="313dp"
+        android:layout_width="330dp"
         android:layout_height="58dp"
         android:layout_marginTop="20dp"
         android:backgroundTint="@color/blue"
@@ -116,13 +147,12 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:text="@string/or"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/password_editText"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="@+id/password_editText"
-        app:layout_constraintTop_toBottomOf="@+id/password_editText" />
+        android:layout_marginTop="30dp"
+        app:layout_constraintEnd_toEndOf="@+id/layout_confirm_password_editText"
+        app:layout_constraintStart_toStartOf="@+id/layout_confirm_password_editText"
+        app:layout_constraintTop_toBottomOf="@+id/layout_confirm_password_editText" />
 
     <TextView
         android:id="@+id/go_to_sign_in"
