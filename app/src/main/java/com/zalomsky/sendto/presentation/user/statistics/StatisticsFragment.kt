@@ -2,45 +2,47 @@ package com.zalomsky.sendto.presentation.user.statistics
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.Toast
+import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.appcompat.view.menu.MenuView.ItemView
-import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.navigation.NavController
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.LifecycleOwner
 import androidx.navigation.Navigation
-import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.zalomsky.sendto.R
+import com.zalomsky.sendto.databinding.FragmentStatisticsBinding
+import com.zalomsky.sendto.presentation.common.auth.AuthFragmentViewModel
 
 class StatisticsFragment : Fragment() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    private lateinit var auth: FirebaseAuth
+    private var _binding: FragmentStatisticsBinding? = null
+    private val binding get() = _binding!!
 
-    }
+    private val authFragmentViewModel: AuthFragmentViewModel by viewModels()
 
-    @SuppressLint("WrongConstant")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        
-        val view= inflater.inflate(R.layout.fragment_statistics, container, false)
 
-        val drawerLayout = view.findViewById<DrawerLayout>(R.id.drawer_layout)
-        val navigationView = view.findViewById<NavigationView>(R.id.nav_view)
-        val toolbar = view.findViewById<Toolbar>(R.id.toolbar)
+        _binding = FragmentStatisticsBinding.inflate(inflater, container, false)
+        val view = binding.root
+
+        auth = Firebase.auth
+
+        val drawerLayout = binding.drawerLayout
+        val navigationView = binding.navView
+        val toolbar = binding.toolbar
 
         navigationView.bringToFront()
         val toggle = ActionBarDrawerToggle(
@@ -53,6 +55,21 @@ class StatisticsFragment : Fragment() {
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
 
+/*        authFragmentViewModel.email.observe(requireActivity(), {
+            binding.haha.text = it
+        })*/
+
+        binding.haha.text = auth.currentUser?.email
+
+        NavigationDrawerRoutes(navigationView, view, drawerLayout)
+        return view
+    }
+
+    private fun NavigationDrawerRoutes(
+        navigationView: NavigationView,
+        view: View,
+        drawerLayout: DrawerLayout
+    ){
         val profile = R.id.nav_profile
         val send = R.id.nav_my_send
         val statistics = R.id.nav_statistics
@@ -64,16 +81,20 @@ class StatisticsFragment : Fragment() {
                     true
                 }
                 send -> {
-                    Navigation.findNavController(view).navigate(R.id.action_statisticsFragment_to_sendFragment)
+                    Navigation.findNavController(view).navigate(R.id.action_statisticsFragment_to_sendTypeFragment2)
                     true
                 }
                 statistics -> {
-                    drawerLayout.closeDrawer(Gravity.START, true)
+                    drawerLayout.closeDrawer(GravityCompat.START, true)
                     true
                 }
                 else -> false
             }
         }
-        return view
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

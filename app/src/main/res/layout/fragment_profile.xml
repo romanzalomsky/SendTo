@@ -37,10 +37,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar2"
         app:layout_constraintVertical_bias="0.0"
-        tools:ignore="MissingConstraints">
+        tools:ignore="MissingConstraints,UnknownIdInLayout">
 
         <EditText
-            android:id="@+id/editTextText"
+            android:id="@+id/nameEdit"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="76dp"
@@ -54,7 +54,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/editTextText2"
+            android:id="@+id/emailEdit"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
@@ -62,13 +62,13 @@
             android:inputType="text"
             android:fontFamily="@font/splinesansmedium"
             android:text="@string/email_example"
-            app:layout_constraintEnd_toEndOf="@+id/editTextText"
+            app:layout_constraintEnd_toEndOf="@+id/nameEdit"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/editTextText"
-            app:layout_constraintTop_toBottomOf="@+id/editTextText" />
+            app:layout_constraintStart_toStartOf="@+id/nameEdit"
+            app:layout_constraintTop_toBottomOf="@+id/nameEdit" />
 
         <EditText
-            android:id="@+id/editTextText3"
+            android:id="@+id/phoneEdit"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
@@ -76,13 +76,13 @@
             android:inputType="text"
             android:fontFamily="@font/splinesansmedium"
             android:text="@string/phone_example"
-            app:layout_constraintEnd_toEndOf="@+id/editTextText2"
+            app:layout_constraintEnd_toEndOf="@+id/emailEdit"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/editTextText2"
-            app:layout_constraintTop_toBottomOf="@+id/editTextText2" />
+            app:layout_constraintStart_toStartOf="@+id/emailEdit"
+            app:layout_constraintTop_toBottomOf="@+id/emailEdit" />
 
         <EditText
-            android:id="@+id/editTextText4"
+            android:id="@+id/passwordEdit"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
@@ -90,10 +90,10 @@
             android:inputType="text"
             android:fontFamily="@font/splinesansmedium"
             android:text="@string/password_example"
-            app:layout_constraintEnd_toEndOf="@+id/editTextText3"
+            app:layout_constraintEnd_toEndOf="@+id/phoneEdit"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/editTextText3"
-            app:layout_constraintTop_toBottomOf="@+id/editTextText3" />
+            app:layout_constraintStart_toStartOf="@+id/phoneEdit"
+            app:layout_constraintTop_toBottomOf="@+id/phoneEdit" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button"
@@ -103,13 +103,13 @@
             android:backgroundTint="@color/blue"
             android:fontFamily="@font/splinesansmedium"
             android:text="@string/change_data_button"
-            app:layout_constraintEnd_toEndOf="@+id/editTextText4"
+            app:layout_constraintEnd_toEndOf="@+id/passwordEdit"
             app:layout_constraintHorizontal_bias="0.504"
-            app:layout_constraintStart_toStartOf="@+id/editTextText4"
-            app:layout_constraintTop_toBottomOf="@+id/editTextText4" />
+            app:layout_constraintStart_toStartOf="@+id/passwordEdit"
+            app:layout_constraintTop_toBottomOf="@+id/passwordEdit" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/logOutButton"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="36dp"

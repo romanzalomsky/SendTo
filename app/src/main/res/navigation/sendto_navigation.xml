@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/sendto_navigation"
-    app:startDestination="@id/authFragment">
+    app:startDestination="@id/loginFragment">
 
     <fragment
         android:id="@+id/authFragment"
@@ -53,8 +53,8 @@
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out" />
         <action
-            android:id="@+id/action_statisticsFragment_to_sendFragment"
-            app:destination="@id/sendFragment"
+            android:id="@+id/action_statisticsFragment_to_sendTypeFragment2"
+            app:destination="@id/sendTypeFragment2"
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out" />
     </fragment>
@@ -62,7 +62,13 @@
         android:id="@+id/profileFragment"
         android:name="com.zalomsky.sendto.presentation.common.profile.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+    </fragment>
     <fragment
         android:id="@+id/googleProfileFragment"
         android:name="com.zalomsky.sendto.presentation.common.profile.google.GoogleProfileFragment"
@@ -70,7 +76,28 @@
         tools:layout="@layout/fragment_google_profile" />
     <fragment
         android:id="@+id/sendFragment"
-        android:name="com.zalomsky.sendto.presentation.user.send.SendFragment"
+        android:name="com.zalomsky.sendto.presentation.user.send.email.SendEmailFragment"
         android:label="fragment_send"
         tools:layout="@layout/fragment_send" />
+    <fragment
+        android:id="@+id/sendTypeFragment2"
+        android:name="com.zalomsky.sendto.presentation.common.SendTypeFragment"
+        android:label="fragment_send_type"
+        tools:layout="@layout/fragment_send_type" >
+        <action
+            android:id="@+id/action_sendTypeFragment2_to_sendFragment"
+            app:destination="@id/sendFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_sendTypeFragment2_to_smsFragment"
+            app:destination="@id/smsFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/smsFragment"
+        android:name="com.zalomsky.sendto.presentation.user.send.sms.SmsFragment"
+        android:label="fragment_sms"
+        tools:layout="@layout/fragment_sms" />
 </navigation>

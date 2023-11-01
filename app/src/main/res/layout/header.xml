@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layoutHeader"
     android:layout_width="match_parent"
     android:layout_height="120dp"
     android:orientation="vertical"
@@ -26,17 +27,18 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <TextView
+                android:id="@+id/mailTextView"
                 android:layout_marginStart="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Roman Zalomsky"
                 android:fontFamily="@font/splinesansmedium">
             </TextView>
             <TextView
+                android:id="@+id/phoneTextView"
                 android:layout_marginStart="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="romanbusiness11@gmail.com"
+                android:text="+375293450059"
                 android:fontFamily="@font/splinesansmedium">
             </TextView>
         </LinearLayout>

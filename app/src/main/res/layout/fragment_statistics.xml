@@ -69,11 +69,11 @@
                     app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
                     <TextView
+                        android:id="@+id/haha"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
-                        android:fontFamily="@font/splinesansmedium"
-                        android:text="Subscribers"></TextView>
+                        android:fontFamily="@font/splinesansmedium"></TextView>
 
                     <TextView
                         android:layout_width="wrap_content"

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".presentation.user.send.SendFragment">
+    tools:context=".presentation.user.send.email.SendEmailFragment">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar2"
@@ -54,21 +54,22 @@
             app:layout_constraintTop_toBottomOf="@+id/textView5"
             app:strokeWidth="1dp" />
 
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/button3"
             android:layout_width="370dp"
             android:layout_height="50dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="16dp"
             android:backgroundTint="@color/white"
             android:fontFamily="@font/splinesansmedium"
-            android:text="@string/download_template_button"
             android:textColor="@color/black"
             android:textSize="20sp"
+            android:text="@string/download_template_button"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:strokeWidth="1dp"/>
+            app:strokeWidth="1dp"
+        ></Button>
 
         <TextView
             android:id="@+id/textView5"
@@ -86,10 +87,10 @@
         </TextView>
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/buttonSend"
             android:layout_width="300dp"
             android:layout_height="70dp"
-            android:layout_marginTop="90dp"
+            android:layout_marginTop="10dp"
             android:backgroundTint="@color/blue"
             android:fontFamily="@font/splinesansmedium"
             android:text="@string/navigation_send"
@@ -124,7 +125,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView2"
             android:layout_width="370dp"
-            android:layout_height="160dp"
+            android:layout_height="260dp"
             android:layout_marginTop="30dp"
             app:cardCornerRadius="10dp"
             app:layout_constraintEnd_toEndOf="@+id/cardView3"
@@ -133,7 +134,7 @@
             app:layout_constraintTop_toBottomOf="@+id/cardView3">
 
             <EditText
-                android:id="@+id/newdsd"
+                android:id="@+id/toEditField"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="35dp"
@@ -141,10 +142,10 @@
                 android:ems="10"
                 android:fontFamily="@font/splinesansmedium"
                 android:inputType="text"
-                android:text="@string/to_example" />
+                android:hint="@string/to_example" />
 
             <EditText
-                android:id="@+id/nedfgdfwdsd"
+                android:id="@+id/fromEditField"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="35dp"
@@ -152,7 +153,18 @@
                 android:ems="10"
                 android:fontFamily="@font/splinesansmedium"
                 android:inputType="text"
-                android:text="@string/from_example" />
+                android:hint="@string/from_example" />
+
+            <EditText
+                android:id="@+id/message"
+                android:layout_width="300dp"
+                android:layout_height="100dp"
+                android:layout_marginHorizontal="35dp"
+                android:layout_marginTop="140dp"
+                android:ems="10"
+                android:fontFamily="@font/splinesansmedium"
+                android:inputType="text"
+                android:hint="@string/message_example" />
         </androidx.cardview.widget.CardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

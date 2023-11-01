@@ -2,39 +2,48 @@
 
     <string name="app_name">SendTo</string>
     <string name="or">or</string>
+    <string name="choose_type_string">Type of send</string>
 
     <!--Examples strings-->
     <string name="main_app_name">SendTo...</string>
     <string name="username_example">Username</string>
-    <string name="email_example">email@example.com</string>
+    <string name="email_example">Почта</string>
     <string name="phone_example">+375291234567</string>
-    <string name="password_example">Password</string>
-    <string name="confirm_password_example">Confirm password</string>
-    <string name="to_example">To</string>
-    <string name="from_example">From</string>
-    <string name="template_usage_example">Template usage:</string>
+    <string name="password_example">Пароль</string>
+    <string name="name_example">Имя</string>
+    <string name="confirm_password_example">Повторите пароль</string>
+    <string name="to_example">Кому</string>
+    <string name="from_example">От</string>
+    <string name="message_example">Сообщение</string>
+    <string name="template_usage_example">Шаблон:</string>
 
     <!--Button strings-->
     <string name="google_button">Use Google account</string>
-    <string name="sign_up_button">Sign up</string>
-    <string name="sign_in_button">Sign in</string>
+    <string name="sign_up_button">Регистрация</string>
+    <string name="sign_in_button">Авторизация</string>
     <string name="change_data_button">Change data</string>
-    <string name="log_out_button">Log out</string>
-    <string name="download_template_button">Download template</string>
-    <string name="create_template_button">Create template</string>
+    <string name="log_out_button">Выйти</string>
+    <string name="download_template_button">Загрузить шаблон</string>
+    <string name="create_template_button">Создать шаблон</string>
+    <string name="send_sms_button">Отправить SMS</string>
+    <string name="send_email_button">Отправить Email</string>
+    <string name="push_button">Push</string>
+    <string name="cancel_button">Cancel</string>
+    <string name="google1_button">Google</string>
+    <string name="facebook_button">Facebook</string>
 
     <!--Clickable text strings-->
-    <string name="sign_in_text_button">Already have an account? Sign in</string>
-    <string name="sign_up_text_button">Dont have account? Sign up</string>
+    <string name="sign_in_text_button">Уже есть аккаунт? Авторизируйтесь</string>
+    <string name="sign_up_text_button">Нет аккаунта? Зарегистрируйтесь</string>
 
     <!--Navigation routes-->
-    <string name="navigation_profile">Profile</string>
+    <string name="navigation_profile">Профиль</string>
     <string name="navigation_sends">Sends</string>
-    <string name="navigation_statistics">Statistics</string>
-    <string name="navigation_my_sends">My sends</string>
-    <string name="navigation_send">Send</string>
-    <string name="navigation_database">Database</string>
-    <string name="navigation_client_databases">Client databases</string>
+    <string name="navigation_statistics">Статистика</string>
+    <string name="navigation_my_sends">Мои рассылки</string>
+    <string name="navigation_send">Рассылки</string>
+    <string name="navigation_database">Базы данных</string>
+    <string name="navigation_client_databases">Клиентская база</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

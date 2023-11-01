@@ -8,12 +8,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.zalomsky.sendto.R
 import com.zalomsky.sendto.databinding.FragmentLoginBinding
+import com.zalomsky.sendto.presentation.common.auth.AuthFragmentViewModel
 
 class LoginFragment : Fragment() {
 
@@ -21,35 +23,50 @@ class LoginFragment : Fragment() {
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
 
+    private val authFragmentViewModel: AuthFragmentViewModel by viewModels()
+
+    override fun onStart() {
+        super.onStart()
+        FirebaseAuth.getInstance()
+    }
+
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
         val view = binding.root
+
         auth = Firebase.auth
 
         binding.goToSignUp.setOnClickListener {
             Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_authFragment)
         }
-        binding.signInButton.setOnClickListener {
-            val email = binding.signInEmailInput.text.toString()
-            val password = binding.signInPasswordInput.text.toString()
-            if(checkAllField()){
-                auth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
-                    if(it.isSuccessful){
-                        Toast.makeText(requireActivity(), "Successfully sign in!", Toast.LENGTH_SHORT).show()
-                        Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_statisticsFragment)
-                    }
-                    else{
-                        Log.e("error: ", it.exception.toString())
-                    }
+
+        binding.signInButton.setOnClickListener { SignIn(view) }
+
+        return view
+    }
+
+    private fun SignIn(
+        view: View
+    ){
+        val email = binding.signInEmailInput.text.toString()
+        val password = binding.signInPasswordInput.text.toString()
+
+        if(checkAllField()){
+            auth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
+                if(it.isSuccessful){
+                    Toast.makeText(requireActivity(), "Account: ${auth.currentUser?.email}", Toast.LENGTH_SHORT).show()
+                    Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_statisticsFragment)
+                }
+                else{
+                    Log.e("error: ", it.exception.toString())
                 }
             }
         }
-
-        return view
     }
 
     private fun checkAllField(): Boolean {
@@ -74,5 +91,10 @@ class LoginFragment : Fragment() {
             return false
         }
         return true
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
