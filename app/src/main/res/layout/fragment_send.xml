@@ -93,7 +93,7 @@
             android:layout_marginTop="10dp"
             android:backgroundTint="@color/blue"
             android:fontFamily="@font/splinesansmedium"
-            android:text="@string/navigation_send"
+            android:text="Отправить"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="@+id/cardView2"
             app:layout_constraintStart_toStartOf="@+id/cardView2"

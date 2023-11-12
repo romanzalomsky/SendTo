@@ -31,7 +31,6 @@ class ProfileFragment : Fragment() {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var databaseReference: DatabaseReference
-    private var list = mutableListOf<User>()
 
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
@@ -48,32 +47,32 @@ class ProfileFragment : Fragment() {
         auth = Firebase.auth
 
         databaseReference = FirebaseDatabase.getInstance().getReference(SendToConstants.USER_KEY)
+
         getDataFromDb()
+        updateData()
 
         navigationProfile(view)
         return view
     }
 
     private fun getDataFromDb(){
-        
+
+        databaseReference = FirebaseDatabase.getInstance()
+            .getReference(SendToConstants.USER_KEY)
+            .child(FirebaseAuth.getInstance().currentUser!!.uid)
         databaseReference.addValueEventListener(object : ValueEventListener {
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
 
-                for (ds in dataSnapshot.children){
+                val name = dataSnapshot.child("name").value.toString()
+                val email = dataSnapshot.child("email").value.toString()
+                val phone = dataSnapshot.child("phone").value.toString()
+                val password = dataSnapshot.child("password").value.toString()
 
-                    databaseReference.child(SendToConstants.USER_KEY).get()
-
-                    val name = ds.child("name").value.toString()
-                    val email = ds.child("email").value.toString()
-                    val phone = ds.child("phone").value.toString()
-                    val password = ds.child("password").value.toString()
-
-                    binding.nameEdit.setText(name)
-                    binding.emailEdit.setText(/*email*/auth.currentUser?.email)
-                    binding.phoneEdit.setText(phone)
-                    binding.passwordEdit.setText(password)
-                }
+                binding.nameEdit.setText(name)
+                binding.emailEdit.setText(email)
+                binding.phoneEdit.setText(phone)
+                binding.passwordEdit.setText(password)
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -81,6 +80,21 @@ class ProfileFragment : Fragment() {
             }
         })
     }
+
+    //todo: Fix update data
+    private fun updateData(){
+
+        val name = binding.nameEdit.text.toString()
+
+        binding.updateButton.setOnClickListener {
+            val hashMap = hashMapOf<String, Any>()
+            hashMap.put("name", name)
+            databaseReference.updateChildren(hashMap).addOnSuccessListener {
+                Toast.makeText(requireActivity(), "Data updated!", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
     private fun navigationProfile(
         view: View
     ){

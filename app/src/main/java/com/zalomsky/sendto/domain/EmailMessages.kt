@@ -4,8 +4,8 @@ import java.util.Date
 
 data class EmailMessages(
 
-    val id: Long,
-    val senderId: Long,
-    val sendTime: Date,
-    val email: String
+    val id: String,
+    val to: String,
+    val from: String,
+    val message: String
 )

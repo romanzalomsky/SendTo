@@ -6,120 +6,171 @@
     android:layout_height="match_parent"
     tools:context=".presentation.common.profile.ProfileFragment">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/profileToolBar"
+    <androidx.drawerlayout.widget.DrawerLayout
         android:layout_width="match_parent"
-        android:layout_height="65dp"
+        android:layout_height="match_parent"
         android:background="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:navigationIcon="@drawable/back">
+        tools:layout_editor_absoluteX="0dp"
+        tools:openDrawer="start">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/splinesansmedium"
-            android:text="@string/navigation_profile"
-            android:textSize="22sp">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white">
 
-        </TextView>
-    </androidx.appcompat.widget.Toolbar>
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/profileToolBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/blue"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:navigationIcon="@drawable/back">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="660dp"
-        android:background="@color/backgroundColor"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar2"
-        app:layout_constraintVertical_bias="0.0"
-        tools:ignore="MissingConstraints,UnknownIdInLayout">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/splinesansmedium"
+                    android:text="@string/navigation_profile"
+                    android:textColor="@color/white"
+                    android:textSize="22sp">
 
-        <EditText
-            android:id="@+id/nameEdit"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="76dp"
-            android:ems="10"
-            android:inputType="text"
-            android:fontFamily="@font/splinesansmedium"
-            android:text="@string/username_example"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+                </TextView>
+            </androidx.appcompat.widget.Toolbar>
 
-        <EditText
-            android:id="@+id/emailEdit"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:ems="10"
-            android:inputType="text"
-            android:fontFamily="@font/splinesansmedium"
-            android:text="@string/email_example"
-            app:layout_constraintEnd_toEndOf="@+id/nameEdit"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/nameEdit"
-            app:layout_constraintTop_toBottomOf="@+id/nameEdit" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_username"
+                android:layout_width="330dp"
+                android:layout_height="58dp"
+                android:layout_marginTop="50dp"
+                android:fontFamily="@font/splinesansmedium"
+                android:inputType="text"
+                android:textColorHint="@color/blue"
+                app:layout_constraintEnd_toEndOf="@+id/imageView2"
+                app:layout_constraintStart_toStartOf="@+id/imageView2"
+                app:layout_constraintTop_toBottomOf="@+id/imageView2">
 
-        <EditText
-            android:id="@+id/phoneEdit"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:ems="10"
-            android:inputType="text"
-            android:fontFamily="@font/splinesansmedium"
-            android:text="@string/phone_example"
-            app:layout_constraintEnd_toEndOf="@+id/emailEdit"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/emailEdit"
-            app:layout_constraintTop_toBottomOf="@+id/emailEdit" />
+                <EditText
+                    android:id="@+id/nameEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:fontFamily="@font/splinesansmedium"
+                    android:inputType="text"
+                    android:text="@string/username_example" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
-            android:id="@+id/passwordEdit"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:ems="10"
-            android:inputType="text"
-            android:fontFamily="@font/splinesansmedium"
-            android:text="@string/password_example"
-            app:layout_constraintEnd_toEndOf="@+id/phoneEdit"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/phoneEdit"
-            app:layout_constraintTop_toBottomOf="@+id/phoneEdit" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_mail"
+                android:layout_width="330dp"
+                android:layout_height="58dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/splinesansmedium"
+                android:inputType="text"
+                android:textColorHint="@color/blue"
+                app:layout_constraintEnd_toEndOf="@+id/layout_username"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/layout_username"
+                app:layout_constraintTop_toBottomOf="@+id/layout_username">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/button"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="52dp"
-            android:backgroundTint="@color/blue"
-            android:fontFamily="@font/splinesansmedium"
-            android:text="@string/change_data_button"
-            app:layout_constraintEnd_toEndOf="@+id/passwordEdit"
-            app:layout_constraintHorizontal_bias="0.504"
-            app:layout_constraintStart_toStartOf="@+id/passwordEdit"
-            app:layout_constraintTop_toBottomOf="@+id/passwordEdit" />
+                <EditText
+                    android:id="@+id/emailEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:fontFamily="@font/splinesansmedium"
+                    android:inputType="text"
+                    android:text="@string/email_example" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
-            android:id="@+id/logOutButton"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
-            android:text="@string/log_out_button"
-            android:backgroundTint="@color/blue"
-            android:fontFamily="@font/splinesansmedium"
-            app:layout_constraintEnd_toEndOf="@+id/button"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/button"
-            app:layout_constraintTop_toBottomOf="@+id/button" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_phone"
+                android:layout_width="330dp"
+                android:layout_height="58dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/splinesansmedium"
+                android:inputType="text"
+                android:textColorHint="@color/blue"
+                app:layout_constraintEnd_toEndOf="@+id/layout_mail"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/layout_mail"
+                app:layout_constraintTop_toBottomOf="@+id/layout_mail">
+
+                <EditText
+                    android:id="@+id/phoneEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:fontFamily="@font/splinesansmedium"
+                    android:inputType="text"
+                    android:text="@string/phone_example" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_password"
+                android:layout_width="330dp"
+                android:layout_height="58dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/splinesansmedium"
+                android:inputType="text"
+                android:textColorHint="@color/blue"
+                app:layout_constraintEnd_toEndOf="@+id/layout_phone"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/layout_phone"
+                app:layout_constraintTop_toBottomOf="@+id/layout_phone">
+
+                <EditText
+                    android:id="@+id/passwordEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:fontFamily="@font/splinesansmedium"
+                    android:inputType="text"
+                    android:text="@string/password_example" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/updateButton"
+                android:layout_width="163dp"
+                android:layout_height="65dp"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="@color/blue"
+                android:fontFamily="@font/splinesansmedium"
+                android:text="Изменить данные"
+                android:textSize="18sp"
+                app:cornerRadius="10dp"
+                app:layout_constraintStart_toStartOf="@+id/layout_password"
+                app:layout_constraintTop_toBottomOf="@+id/layout_password" />
+
+            <Button
+                android:id="@+id/logOutButton"
+                android:layout_width="160dp"
+                android:layout_height="65dp"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="@color/blue"
+                android:fontFamily="@font/splinesansmedium"
+                android:text="@string/log_out_button"
+                android:textSize="18sp"
+                app:cornerRadius="10dp"
+                app:layout_constraintEnd_toEndOf="@+id/layout_password"
+                app:layout_constraintTop_toBottomOf="@+id/layout_password" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="50dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profileToolBar"
+                tools:src="@drawable/avatar" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.drawerlayout.widget.DrawerLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -57,6 +57,16 @@
             app:destination="@id/sendTypeFragment2"
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_statisticsFragment_to_addressBookFragment"
+            app:destination="@id/addressBookFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_statisticsFragment_to_mySendsFragment"
+            app:destination="@id/mySendsFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -100,4 +110,53 @@
         android:name="com.zalomsky.sendto.presentation.user.send.sms.SmsFragment"
         android:label="fragment_sms"
         tools:layout="@layout/fragment_sms" />
+    <fragment
+        android:id="@+id/addressBookFragment"
+        android:name="com.zalomsky.sendto.presentation.user.clients.AddressBookFragment"
+        android:label="fragment_address_book"
+        tools:layout="@layout/fragment_address_book" >
+        <action
+            android:id="@+id/action_addressBookFragment_to_addAddressBookFragment"
+            app:destination="@id/addAddressBookFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_addressBookFragment_to_clientFragment"
+            app:destination="@id/clientFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out">
+<!--            <argument
+                android:name=""
+                app:argType="String">
+
+            </argument>-->
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/addAddressBookFragment"
+        android:name="com.zalomsky.sendto.presentation.user.clients.add.AddAddressBookFragment"
+        android:label="fragment_add_address_book"
+        tools:layout="@layout/fragment_add_address_book" >
+        <action
+            android:id="@+id/action_addAddressBookFragment_to_addressBookFragment"
+            app:destination="@id/addressBookFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/mySendsFragment"
+        android:name="com.zalomsky.sendto.presentation.user.mysends.MySendsFragment"
+        android:label="fragment_my_sends"
+        tools:layout="@layout/fragment_my_sends" />
+    <fragment
+        android:id="@+id/clientFragment"
+        android:name="com.zalomsky.sendto.presentation.user.clients.add.ClientFragment"
+        android:label="fragment_client"
+        tools:layout="@layout/fragment_client" >
+        <action
+            android:id="@+id/action_clientFragment_to_addressBookFragment"
+            app:destination="@id/addressBookFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+    </fragment>
 </navigation>

@@ -27,18 +27,18 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <TextView
-                android:id="@+id/mailTextView"
+                android:id="@+id/nameTextView"
                 android:layout_marginStart="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/splinesansmedium">
             </TextView>
             <TextView
-                android:id="@+id/phoneTextView"
+                android:id="@+id/emailTextView"
                 android:layout_marginStart="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="+375293450059"
+                android:text=""
                 android:fontFamily="@font/splinesansmedium">
             </TextView>
         </LinearLayout>

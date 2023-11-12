@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="90dp"
+    android:id="@+id/cardViewAddress"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardElevation="8dp"
+    app:cardCornerRadius="10dp"
+    android:layout_margin="10dp">
+
+    <TextView
+        android:id="@+id/tvAddressBook"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Address book"
+        android:layout_gravity="top|center"
+        android:layout_marginTop="10dp"
+        android:gravity="top|center"
+        android:textColor="@color/blue"
+        android:textSize="25sp"
+        android:fontFamily="@font/splinesansmedium">
+    </TextView>
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="top|center"
+        android:gravity="top|center"
+        android:fontFamily="@font/splinesansmedium"
+        android:text="Количество клиентов " />
+
+    <TextView
+        android:id="@+id/amountClients"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="68dp"
+        android:layout_gravity="top|center"
+        android:gravity="top|center"
+        android:fontFamily="@font/splinesansmedium"
+        android:text="0"></TextView>
+
+</androidx.cardview.widget.CardView>
