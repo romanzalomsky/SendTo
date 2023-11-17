@@ -3,11 +3,10 @@ package com.zalomsky.sendto.presentation.user.clients
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView.OnItemClickListener
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.zalomsky.sendto.R
-import com.zalomsky.sendto.domain.AddressBook
+import com.zalomsky.sendto.domain.model.AddressBook
 
 class RecycleViewAdapter (
     private val list: ArrayList<AddressBook>

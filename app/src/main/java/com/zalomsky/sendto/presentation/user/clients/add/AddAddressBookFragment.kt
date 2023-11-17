@@ -12,11 +12,9 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.zalomsky.sendto.R
-import com.zalomsky.sendto.SendToConstants
+import com.zalomsky.sendto.data.firebase.model.FirebaseConstants
 import com.zalomsky.sendto.databinding.FragmentAddAddressBookBinding
-import com.zalomsky.sendto.databinding.FragmentStatisticsBinding
-import com.zalomsky.sendto.domain.AddressBook
-import com.zalomsky.sendto.domain.Client
+import com.zalomsky.sendto.domain.model.AddressBook
 
 class AddAddressBookFragment : Fragment() {
 
@@ -34,7 +32,7 @@ class AddAddressBookFragment : Fragment() {
         val view = binding.root
 
         database = Firebase.database
-            .getReference(SendToConstants.USER_KEY)
+            .getReference(FirebaseConstants.USER_KEY)
             .child(FirebaseAuth.getInstance().currentUser!!.uid)
 
         createAddressBook(view)
@@ -51,7 +49,7 @@ class AddAddressBookFragment : Fragment() {
 
             val addressBook = AddressBook(id, name)
 
-            database.child(SendToConstants.ADDRESS_BOOK_KEY).child(id).setValue(addressBook).addOnSuccessListener {
+            database.child(FirebaseConstants.ADDRESS_BOOK_KEY).child(id).setValue(addressBook).addOnSuccessListener {
                 Navigation.findNavController(view).navigate(R.id.action_addAddressBookFragment_to_addressBookFragment)
                 Toast.makeText(requireActivity(), "Книга добавлена", Toast.LENGTH_SHORT).show()
             }

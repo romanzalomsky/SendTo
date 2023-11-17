@@ -6,165 +6,179 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.user.send.email.SendEmailFragment">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar2"
+    <androidx.drawerlayout.widget.DrawerLayout
         android:layout_width="match_parent"
-        android:layout_height="65dp"
-        android:background="@color/white"
+        android:layout_height="match_parent"
+        android:backgroundTint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:navigationIcon="@drawable/back">
+        app:layout_constraintStart_toStartOf="parent">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/splinesansmedium"
-            android:text="@string/navigation_send"
-            android:textSize="22sp">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:backgroundTint="@color/white">
 
-        </TextView>
-    </androidx.appcompat.widget.Toolbar>
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar2"
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:background="@color/blue"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:navigationIcon="@drawable/back">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="660dp"
-        android:background="@color/backgroundColor"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar2"
-        app:layout_constraintVertical_bias="0.0"
-        tools:ignore="MissingConstraints">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/splinesansmedium"
+                    android:textColor="@color/white"
+                    android:text="@string/navigation_send"
+                    android:textSize="22sp">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/button4"
-            android:layout_width="370dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="10dp"
-            android:backgroundTint="@color/white"
-            android:fontFamily="@font/splinesansmedium"
-            android:text="@string/create_template_button"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="@+id/textView5"
-            app:layout_constraintStart_toStartOf="@+id/textView5"
-            app:layout_constraintTop_toBottomOf="@+id/textView5"
-            app:strokeWidth="1dp" />
+                </TextView>
+            </androidx.appcompat.widget.Toolbar>
 
-        <Button
-            android:id="@+id/button3"
-            android:layout_width="370dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="16dp"
-            android:backgroundTint="@color/white"
-            android:fontFamily="@font/splinesansmedium"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:text="@string/download_template_button"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:strokeWidth="1dp"
-        ></Button>
+            <!--            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView2"
+                android:layout_width="370dp"
+                android:layout_height="260dp"
+                app:cardCornerRadius="10dp"
+                tools:layout_editor_absoluteX="20dp"
+                tools:layout_editor_absoluteY="356dp">
 
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/splinesansmedium"
-            android:text="@string/or"
-            android:textSize="20dp"
-            app:layout_constraintEnd_toEndOf="@+id/button3"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="@+id/button3"
-            app:layout_constraintTop_toBottomOf="@+id/button3">
+                <EditText
+                    android:id="@+id/toEditField"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="35dp"
+                    android:layout_marginTop="20dp"
+                    android:ems="10"
+                    android:fontFamily="@font/splinesansmedium"
+                    android:hint="@string/to_example"
+                    android:inputType="text" />
 
-        </TextView>
+                <EditText
+                    android:id="@+id/fromEditField"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="35dp"
+                    android:layout_marginTop="90dp"
+                    android:ems="10"
+                    android:fontFamily="@font/splinesansmedium"
+                    android:hint="@string/from_example"
+                    android:inputType="text" />
 
-        <Button
-            android:id="@+id/buttonSend"
-            android:layout_width="300dp"
-            android:layout_height="70dp"
-            android:layout_marginTop="10dp"
-            android:backgroundTint="@color/blue"
-            android:fontFamily="@font/splinesansmedium"
-            android:text="Отправить"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="@+id/cardView2"
-            app:layout_constraintStart_toStartOf="@+id/cardView2"
-            app:layout_constraintTop_toBottomOf="@+id/cardView2" />
+                <EditText
+                    android:id="@+id/message"
+                    android:layout_width="300dp"
+                    android:layout_height="100dp"
+                    android:layout_marginHorizontal="35dp"
+                    android:layout_marginTop="140dp"
+                    android:ems="10"
+                    android:fontFamily="@font/splinesansmedium"
+                    android:hint="@string/message_example"
+                    android:inputType="text" />
+            </androidx.cardview.widget.CardView>-->
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView3"
-            android:layout_width="370dp"
-            android:layout_height="100dp"
-            android:layout_marginTop="20dp"
-            app:cardCornerRadius="10dp"
-            app:layout_constraintEnd_toEndOf="@+id/button4"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/button4"
-            app:layout_constraintTop_toBottomOf="@+id/button4">
+            <Button
+                android:id="@+id/buttonSend"
+                android:layout_width="330dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="384dp"
+                android:backgroundTint="@color/blue"
+                android:fontFamily="@font/splinesansmedium"
+                android:text="Отправить"
+                android:textSize="20sp"
+                app:cornerRadius="10dp"
+                app:layout_constraintEnd_toEndOf="@+id/button4"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/button4"
+                app:layout_constraintTop_toBottomOf="@+id/button4" />
 
             <TextView
+                android:id="@+id/textView5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/template_usage_example"
+                android:layout_marginTop="30dp"
                 android:fontFamily="@font/splinesansmedium"
-                android:textSize="20dp"
-                android:layout_marginTop="35dp"
-                android:layout_marginHorizontal="10dp">
+                android:text="Адресная книга: "
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.149"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar2" />
 
-            </TextView>
-        </androidx.cardview.widget.CardView>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/downloadAddressBook"
+                android:layout_width="330dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/splinesansmedium"
+                android:text="Загрузить"
+                android:textSize="20sp"
+                android:backgroundTint="@color/blue"
+                app:cornerRadius="10dp"
+                app:layout_constraintEnd_toEndOf="@+id/textView5"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/textView5"
+                app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView2"
-            android:layout_width="370dp"
-            android:layout_height="260dp"
-            android:layout_marginTop="30dp"
-            app:cardCornerRadius="10dp"
-            app:layout_constraintEnd_toEndOf="@+id/cardView3"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="@+id/cardView3"
-            app:layout_constraintTop_toBottomOf="@+id/cardView3">
-
-            <EditText
-                android:id="@+id/toEditField"
-                android:layout_width="300dp"
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="35dp"
                 android:layout_marginTop="20dp"
-                android:ems="10"
                 android:fontFamily="@font/splinesansmedium"
-                android:inputType="text"
-                android:hint="@string/to_example" />
+                android:text="Шаблон: "
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="@+id/downloadAddressBook"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/downloadAddressBook"
+                app:layout_constraintTop_toBottomOf="@+id/downloadAddressBook" />
 
-            <EditText
-                android:id="@+id/fromEditField"
-                android:layout_width="300dp"
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button4"
+                android:layout_width="330dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:text="Загрузить"
+                android:fontFamily="@font/splinesansmedium"
+                android:textSize="20sp"
+                android:backgroundTint="@color/blue"
+                app:cornerRadius="10dp"
+                app:layout_constraintEnd_toEndOf="@+id/textView7"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/textView7"
+                app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+            <TextView
+                android:id="@+id/addressBookPlace"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="35dp"
-                android:layout_marginTop="90dp"
-                android:ems="10"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="180dp"
                 android:fontFamily="@font/splinesansmedium"
-                android:inputType="text"
-                android:hint="@string/from_example" />
+                android:text="Книга"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar2" />
 
-            <EditText
-                android:id="@+id/message"
-                android:layout_width="300dp"
-                android:layout_height="100dp"
-                android:layout_marginHorizontal="35dp"
-                android:layout_marginTop="140dp"
-                android:ems="10"
+            <TextView
+                android:id="@+id/templatePlace"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="225dp"
+                android:textSize="18sp"
                 android:fontFamily="@font/splinesansmedium"
-                android:inputType="text"
-                android:hint="@string/message_example" />
-        </androidx.cardview.widget.CardView>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                android:text="Шаблон"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/downloadAddressBook" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.drawerlayout.widget.DrawerLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

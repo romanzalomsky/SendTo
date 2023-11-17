@@ -76,10 +76,10 @@
                 app:layout_constraintStart_toStartOf="@+id/layout_username"
                 app:layout_constraintTop_toBottomOf="@+id/layout_username">
 
-                <EditText
+                <TextView
                     android:id="@+id/emailEdit"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:ems="10"
                     android:fontFamily="@font/splinesansmedium"
                     android:inputType="text"

@@ -1,18 +1,14 @@
 package com.zalomsky.sendto.presentation.common.profile
 
-import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import android.widget.Button
-import android.widget.EditText
 import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
-import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
@@ -22,18 +18,19 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
 import com.zalomsky.sendto.R
-import com.zalomsky.sendto.SendToConstants
-import com.zalomsky.sendto.databinding.FragmentAuthBinding
+import com.zalomsky.sendto.data.firebase.model.FirebaseConstants
 import com.zalomsky.sendto.databinding.FragmentProfileBinding
-import com.zalomsky.sendto.domain.User
+import com.zalomsky.sendto.domain.model.User
+import com.zalomsky.sendto.presentation.common.login.LoginFragmentViewModel
 
 class ProfileFragment : Fragment() {
 
-    private lateinit var auth: FirebaseAuth
-    private lateinit var databaseReference: DatabaseReference
+    private lateinit var database: DatabaseReference
 
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
+
+    private lateinit var viewModel: ProfileFragmentViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,12 +41,9 @@ class ProfileFragment : Fragment() {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        auth = Firebase.auth
-
-        databaseReference = FirebaseDatabase.getInstance().getReference(SendToConstants.USER_KEY)
+        viewModel = ViewModelProvider(requireActivity()).get(ProfileFragmentViewModel::class.java)
 
         getDataFromDb()
-        updateData()
 
         navigationProfile(view)
         return view
@@ -57,11 +51,10 @@ class ProfileFragment : Fragment() {
 
     private fun getDataFromDb(){
 
-        databaseReference = FirebaseDatabase.getInstance()
-            .getReference(SendToConstants.USER_KEY)
+        database = FirebaseDatabase.getInstance()
+            .getReference(FirebaseConstants.USER_KEY)
             .child(FirebaseAuth.getInstance().currentUser!!.uid)
-        databaseReference.addValueEventListener(object : ValueEventListener {
-
+        database.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
 
                 val name = dataSnapshot.child("name").value.toString()
@@ -73,26 +66,29 @@ class ProfileFragment : Fragment() {
                 binding.emailEdit.setText(email)
                 binding.phoneEdit.setText(phone)
                 binding.passwordEdit.setText(password)
-            }
 
-            override fun onCancelled(error: DatabaseError) {
-
+                binding.apply {
+                    binding.updateButton.setOnClickListener {
+                        updateData()
+                    }
+                }
             }
+            override fun onCancelled(error: DatabaseError) {}
         })
     }
 
-    //todo: Fix update data
     private fun updateData(){
 
         val name = binding.nameEdit.text.toString()
+        val email = binding.emailEdit.text.toString()
+        val phone = binding.phoneEdit.text.toString()
+        val password = binding.passwordEdit.text.toString()
 
-        binding.updateButton.setOnClickListener {
-            val hashMap = hashMapOf<String, Any>()
-            hashMap.put("name", name)
-            databaseReference.updateChildren(hashMap).addOnSuccessListener {
-                Toast.makeText(requireActivity(), "Data updated!", Toast.LENGTH_SHORT).show()
-            }
-        }
+        val user = User(FirebaseAuth.getInstance().currentUser!!.uid, name, phone, email, password)
+
+        viewModel.onUpdateButtonClick(name, email, phone, password)
+        Toast.makeText(requireActivity(), "Данные обновлены", Toast.LENGTH_SHORT).show()
+
     }
 
     private fun navigationProfile(

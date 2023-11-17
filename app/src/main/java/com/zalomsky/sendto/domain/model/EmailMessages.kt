@@ -1,4 +1,4 @@
-package com.zalomsky.sendto.domain
+package com.zalomsky.sendto.domain.model
 
 import java.util.Date
 

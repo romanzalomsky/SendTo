@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -19,11 +20,10 @@ import com.zalomsky.sendto.presentation.common.auth.AuthFragmentViewModel
 
 class LoginFragment : Fragment() {
 
-    private lateinit var auth: FirebaseAuth
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
 
-    private val authFragmentViewModel: AuthFragmentViewModel by viewModels()
+    private lateinit var viewModel: LoginFragmentViewModel
 
     override fun onStart() {
         super.onStart()
@@ -39,7 +39,7 @@ class LoginFragment : Fragment() {
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        auth = Firebase.auth
+        viewModel = ViewModelProvider(requireActivity()).get(LoginFragmentViewModel::class.java)
 
         binding.goToSignUp.setOnClickListener {
             Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_authFragment)
@@ -56,41 +56,9 @@ class LoginFragment : Fragment() {
         val email = binding.signInEmailInput.text.toString()
         val password = binding.signInPasswordInput.text.toString()
 
-        if(checkAllField()){
-            auth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
-                if(it.isSuccessful){
-                    Toast.makeText(requireActivity(), "Account: ${auth.currentUser?.email}", Toast.LENGTH_SHORT).show()
-                    Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_statisticsFragment)
-                }
-                else{
-                    Log.e("error: ", it.exception.toString())
-                }
-            }
-        }
-    }
-
-    private fun checkAllField(): Boolean {
-
-        val email = binding.signInEmailInput.text.toString()
-        if(email == ""){
-            binding.layoutSignInEmailInput.error = "This is required field"
-            return false
-        }
-        if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-            binding.layoutSignInEmailInput.error = "Check email format"
-            return false
-        }
-        if(binding.signInPasswordInput.text.toString() == ""){
-            binding.layoutSignInPasswordInput.error = "This is required field"
-            binding.layoutSignInPasswordInput.errorIconDrawable = null
-            return false
-        }
-        if(binding.signInPasswordInput.length() <= 6){
-            binding.layoutSignInPasswordInput.error = "Password should at least 6 numbers"
-            binding.layoutSignInPasswordInput.errorIconDrawable = null
-            return false
-        }
-        return true
+        viewModel.onSignInClick(email, password)
+        Toast.makeText(requireActivity(), "Sign in Successfully", Toast.LENGTH_SHORT).show()
+        Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_statisticsFragment)
     }
 
     override fun onDestroyView() {

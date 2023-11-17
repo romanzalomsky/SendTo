@@ -1,20 +1,20 @@
 package com.zalomsky.sendto.presentation.user.send.email
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.navigation.Navigation
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import com.zalomsky.sendto.SendToConstants
+import com.zalomsky.sendto.R
+import com.zalomsky.sendto.data.firebase.model.FirebaseConstants
 import com.zalomsky.sendto.databinding.FragmentSendBinding
-import com.zalomsky.sendto.domain.EmailMessages
 
 class SendEmailFragment : Fragment() {
 
@@ -41,20 +41,25 @@ class SendEmailFragment : Fragment() {
         _binding = FragmentSendBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        database = Firebase.database.getReference(SendToConstants.USER_KEY).child(FirebaseAuth.getInstance().currentUser!!.uid)
+        database = Firebase.database.getReference(FirebaseConstants.USER_KEY).child(FirebaseAuth.getInstance().currentUser!!.uid)
         
         auth = Firebase.auth
 
-        binding.fromEditField.setText(auth.currentUser?.email)
+        var userEmail = auth.currentUser?.email
+
+        binding.templatePlace.visibility = View.GONE
+        binding.addressBookPlace.visibility = View.GONE
+
+        downloadAddressBook(view)
 
         binding.buttonSend.setOnClickListener {
 
             val id = database.push().key!!
-            val to = binding.toEditField.text.toString()
-            val from = binding.fromEditField.text.toString()
-            val message = binding.message.text.toString()
+/*            val to = binding.toEditField.text.toString()*/
+            val from = userEmail!!
+/*            val message = binding.message.text.toString()*/
 
-            val emailMessage = EmailMessages(id, to, from, message)
+/*            val emailMessage = EmailMessages(id, to, from, message)
 
             val email = Intent(Intent.ACTION_SEND)
             email.putExtra(Intent.EXTRA_EMAIL, arrayOf(to))
@@ -65,11 +70,21 @@ class SendEmailFragment : Fragment() {
 
             database.child(SendToConstants.MESSAGE_KEY).child(id).setValue(emailMessage)
 
-            startActivity(Intent.createChooser(email, "Выберите email клиент :"))
+            startActivity(Intent.createChooser(email, "Выберите email клиент :"))*/
 
         }
 
         return view
+    }
+
+    private fun downloadAddressBook(
+        view: View
+    ){
+        binding.downloadAddressBook.setOnClickListener {
+
+            Navigation.findNavController(view).navigate(R.id.action_sendFragment_to_getAddressBookFragment)
+            Toast.makeText(requireActivity(), "Адресная книга загружена", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun SendEmail(){

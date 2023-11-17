@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -21,7 +20,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
 import com.zalomsky.sendto.R
-import com.zalomsky.sendto.SendToConstants
+import com.zalomsky.sendto.data.firebase.model.FirebaseConstants
 import com.zalomsky.sendto.databinding.FragmentStatisticsBinding
 import com.zalomsky.sendto.presentation.common.auth.AuthFragmentViewModel
 
@@ -69,9 +68,9 @@ class StatisticsFragment : Fragment() {
 
     private fun sendsCount(){
         databaseReference = FirebaseDatabase.getInstance()
-            .getReference(SendToConstants.USER_KEY)
+            .getReference(FirebaseConstants.USER_KEY)
             .child(FirebaseAuth.getInstance().currentUser!!.uid)
-            .child(SendToConstants.MESSAGE_KEY)
+            .child(FirebaseConstants.MESSAGE_KEY)
         databaseReference.addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 binding.sendsCount.setText(snapshot.children.count().toString())

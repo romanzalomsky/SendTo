@@ -88,7 +88,13 @@
         android:id="@+id/sendFragment"
         android:name="com.zalomsky.sendto.presentation.user.send.email.SendEmailFragment"
         android:label="fragment_send"
-        tools:layout="@layout/fragment_send" />
+        tools:layout="@layout/fragment_send" >
+        <action
+            android:id="@+id/action_sendFragment_to_getAddressBookFragment"
+            app:destination="@id/getAddressBookFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+    </fragment>
     <fragment
         android:id="@+id/sendTypeFragment2"
         android:name="com.zalomsky.sendto.presentation.common.SendTypeFragment"
@@ -156,6 +162,17 @@
         <action
             android:id="@+id/action_clientFragment_to_addressBookFragment"
             app:destination="@id/addressBookFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/getAddressBookFragment"
+        android:name="com.zalomsky.sendto.presentation.user.send.email.GetAddressBookFragment"
+        android:label="fragment_get_address_book"
+        tools:layout="@layout/fragment_get_address_book" >
+        <action
+            android:id="@+id/action_getAddressBookFragment_to_sendFragment"
+            app:destination="@id/sendFragment"
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out" />
     </fragment>

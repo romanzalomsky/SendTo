@@ -16,7 +16,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.zalomsky.sendto.R
-import com.zalomsky.sendto.SendToConstants
+import com.zalomsky.sendto.data.firebase.model.FirebaseConstants
 import com.zalomsky.sendto.databinding.FragmentAuthBinding
 
 class AuthFragment : Fragment() {
@@ -28,10 +28,6 @@ class AuthFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val authFragmentViewModel: AuthFragmentViewModel by viewModels()
-
-    override fun onStart() {
-        super.onStart()
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -67,10 +63,10 @@ class AuthFragment : Fragment() {
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
             if(it.isSuccessful){
 
-                database.child(SendToConstants.USER_KEY).child(FirebaseAuth.getInstance().currentUser!!.uid).child("name").setValue(name)
-                database.child(SendToConstants.USER_KEY).child(FirebaseAuth.getInstance().currentUser!!.uid).child("phone").setValue(phone)
-                database.child(SendToConstants.USER_KEY).child(FirebaseAuth.getInstance().currentUser!!.uid).child("email").setValue(email)
-                database.child(SendToConstants.USER_KEY).child(FirebaseAuth.getInstance().currentUser!!.uid).child("password").setValue(password)
+                database.child(FirebaseConstants.USER_KEY).child(FirebaseAuth.getInstance().currentUser!!.uid).child("name").setValue(name)
+                database.child(FirebaseConstants.USER_KEY).child(FirebaseAuth.getInstance().currentUser!!.uid).child("phone").setValue(phone)
+                database.child(FirebaseConstants.USER_KEY).child(FirebaseAuth.getInstance().currentUser!!.uid).child("email").setValue(email)
+                database.child(FirebaseConstants.USER_KEY).child(FirebaseAuth.getInstance().currentUser!!.uid).child("password").setValue(password)
 
                 emailVerification()
                 val currentUser: FirebaseUser? = auth.currentUser
