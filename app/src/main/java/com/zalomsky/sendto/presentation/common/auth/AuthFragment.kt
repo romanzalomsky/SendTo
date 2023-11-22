@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -18,6 +19,7 @@ import com.google.firebase.ktx.Firebase
 import com.zalomsky.sendto.R
 import com.zalomsky.sendto.data.firebase.model.FirebaseConstants
 import com.zalomsky.sendto.databinding.FragmentAuthBinding
+import com.zalomsky.sendto.presentation.common.login.LoginFragmentViewModel
 
 class AuthFragment : Fragment() {
 
@@ -27,7 +29,7 @@ class AuthFragment : Fragment() {
     private var _binding: FragmentAuthBinding? = null
     private val binding get() = _binding!!
 
-    private val authFragmentViewModel: AuthFragmentViewModel by viewModels()
+    private lateinit var viewModel: AuthFragmentViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,6 +39,8 @@ class AuthFragment : Fragment() {
 
         _binding = FragmentAuthBinding.inflate(inflater, container, false)
         val view = binding.root
+
+        viewModel = ViewModelProvider(requireActivity()).get(AuthFragmentViewModel::class.java)
 
         database = Firebase.database.reference
         auth = Firebase.auth
@@ -60,30 +64,18 @@ class AuthFragment : Fragment() {
         val email = binding.emailEditText.text.toString()
         val password = binding.passwordEditText.text.toString()
 
-        auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
-            if(it.isSuccessful){
+        viewModel.onRegistrationClick(name, email, phone, password)
 
-                database.child(FirebaseConstants.USER_KEY).child(FirebaseAuth.getInstance().currentUser!!.uid).child("name").setValue(name)
-                database.child(FirebaseConstants.USER_KEY).child(FirebaseAuth.getInstance().currentUser!!.uid).child("phone").setValue(phone)
-                database.child(FirebaseConstants.USER_KEY).child(FirebaseAuth.getInstance().currentUser!!.uid).child("email").setValue(email)
-                database.child(FirebaseConstants.USER_KEY).child(FirebaseAuth.getInstance().currentUser!!.uid).child("password").setValue(password)
+        val currentUser: FirebaseUser? = auth.currentUser
 
-                emailVerification()
-                val currentUser: FirebaseUser? = auth.currentUser
+        if(currentUser?.isEmailVerified == true){
 
-                if(currentUser?.isEmailVerified == true){
-
-                    Toast.makeText(requireActivity(), "Account created successfully!", Toast.LENGTH_SHORT).show()
-                    Navigation.findNavController(view).navigate(R.id.action_authFragment_to_statisticsFragment)
-                }
-            }
-            else {
-                Log.e("error: ", it.exception.toString())
-            }
+            Toast.makeText(requireActivity(), "Account created successfully!", Toast.LENGTH_SHORT).show()
+            Navigation.findNavController(view).navigate(R.id.action_authFragment_to_statisticsFragment)
         }
     }
 
-    private fun emailVerification(){
+/*    private fun emailVerification(){
 
         val user: FirebaseUser? = auth.currentUser
 
@@ -92,7 +84,7 @@ class AuthFragment : Fragment() {
                 Toast.makeText(requireActivity(), "Verify email", Toast.LENGTH_SHORT).show()
             }
         }
-    }
+    }*/
 
     override fun onDestroyView() {
         super.onDestroyView()

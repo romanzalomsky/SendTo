@@ -1,4 +1,4 @@
-package com.zalomsky.sendto.presentation.user.clients
+package com.zalomsky.sendto.presentation.user.clients.adapter
 
 import android.view.LayoutInflater
 import android.view.View

@@ -1,4 +1,4 @@
-package com.zalomsky.sendto.presentation.user.clients.add
+package com.zalomsky.sendto.presentation.user.clients.add.addClient
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -19,6 +20,8 @@ import com.zalomsky.sendto.R
 import com.zalomsky.sendto.data.firebase.model.FirebaseConstants
 import com.zalomsky.sendto.databinding.FragmentClientBinding
 import com.zalomsky.sendto.domain.model.Client
+import com.zalomsky.sendto.presentation.common.login.LoginFragmentViewModel
+import com.zalomsky.sendto.presentation.user.clients.add.AddAddressBookViewModel
 
 class ClientFragment : Fragment() {
 
@@ -26,7 +29,7 @@ class ClientFragment : Fragment() {
     private var _binding: FragmentClientBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: AddressBookViewModel by viewModels()
+    private lateinit var viewModel: ClientFragmentViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,6 +39,8 @@ class ClientFragment : Fragment() {
 
         _binding = FragmentClientBinding.inflate(inflater, container, false)
         val view = binding.root
+
+        viewModel = ViewModelProvider(requireActivity()).get(ClientFragmentViewModel::class.java)
 
         database = Firebase.database
             .getReference(FirebaseConstants.USER_KEY)
@@ -50,14 +55,9 @@ class ClientFragment : Fragment() {
                     val email = binding.clientsEditText.text.toString()
                     val phone = binding.phoneClientEditText.text.toString()
 
-                    val client = Client(id, email, phone)
-
                     val addressBookId = arguments?.getString("id")
 
-                    database.child(addressBookId!!).child(FirebaseConstants.CLIENTS_KEY).child(id).setValue(client).addOnSuccessListener {
-                        Navigation.findNavController(view).navigate(R.id.action_clientFragment_to_addressBookFragment)
-                        Toast.makeText(requireActivity(), "Клиент добавлен", Toast.LENGTH_SHORT).show()
-                    }
+                    viewModel.onAddClient(id, email, phone, view, addressBookId!!)
                 }
             }
             override fun onCancelled(error: DatabaseError) {}

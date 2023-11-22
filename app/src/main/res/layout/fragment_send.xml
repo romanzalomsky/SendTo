@@ -40,65 +40,23 @@
                 </TextView>
             </androidx.appcompat.widget.Toolbar>
 
-            <!--            <androidx.cardview.widget.CardView
-                android:id="@+id/cardView2"
-                android:layout_width="370dp"
-                android:layout_height="260dp"
-                app:cardCornerRadius="10dp"
-                tools:layout_editor_absoluteX="20dp"
-                tools:layout_editor_absoluteY="356dp">
-
-                <EditText
-                    android:id="@+id/toEditField"
-                    android:layout_width="300dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="35dp"
-                    android:layout_marginTop="20dp"
-                    android:ems="10"
-                    android:fontFamily="@font/splinesansmedium"
-                    android:hint="@string/to_example"
-                    android:inputType="text" />
-
-                <EditText
-                    android:id="@+id/fromEditField"
-                    android:layout_width="300dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="35dp"
-                    android:layout_marginTop="90dp"
-                    android:ems="10"
-                    android:fontFamily="@font/splinesansmedium"
-                    android:hint="@string/from_example"
-                    android:inputType="text" />
-
-                <EditText
-                    android:id="@+id/message"
-                    android:layout_width="300dp"
-                    android:layout_height="100dp"
-                    android:layout_marginHorizontal="35dp"
-                    android:layout_marginTop="140dp"
-                    android:ems="10"
-                    android:fontFamily="@font/splinesansmedium"
-                    android:hint="@string/message_example"
-                    android:inputType="text" />
-            </androidx.cardview.widget.CardView>-->
-
             <Button
                 android:id="@+id/buttonSend"
                 android:layout_width="330dp"
                 android:layout_height="60dp"
-                android:layout_marginTop="384dp"
+                android:layout_marginTop="208dp"
                 android:backgroundTint="@color/blue"
                 android:fontFamily="@font/splinesansmedium"
                 android:text="Отправить"
                 android:textSize="20sp"
                 app:cornerRadius="10dp"
-                app:layout_constraintEnd_toEndOf="@+id/button4"
+                app:layout_constraintEnd_toEndOf="@+id/tempateText"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/button4"
-                app:layout_constraintTop_toBottomOf="@+id/button4" />
+                app:layout_constraintStart_toStartOf="@+id/tempateText"
+                app:layout_constraintTop_toBottomOf="@+id/tempateText" />
 
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/addressBookPlace"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
@@ -110,72 +68,38 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/toolbar2" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/downloadAddressBook"
-                android:layout_width="330dp"
-                android:layout_height="60dp"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/splinesansmedium"
-                android:text="Загрузить"
-                android:textSize="20sp"
-                android:backgroundTint="@color/blue"
-                app:cornerRadius="10dp"
-                app:layout_constraintEnd_toEndOf="@+id/textView5"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/textView5"
-                app:layout_constraintTop_toBottomOf="@+id/textView5" />
-
-            <TextView
-                android:id="@+id/textView7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:fontFamily="@font/splinesansmedium"
-                android:text="Шаблон: "
-                android:textSize="18sp"
-                app:layout_constraintEnd_toEndOf="@+id/downloadAddressBook"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/downloadAddressBook"
-                app:layout_constraintTop_toBottomOf="@+id/downloadAddressBook" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/button4"
-                android:layout_width="330dp"
-                android:layout_height="60dp"
-                android:layout_marginTop="10dp"
-                android:text="Загрузить"
-                android:fontFamily="@font/splinesansmedium"
-                android:textSize="20sp"
-                android:backgroundTint="@color/blue"
-                app:cornerRadius="10dp"
-                app:layout_constraintEnd_toEndOf="@+id/textView7"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/textView7"
-                app:layout_constraintTop_toBottomOf="@+id/textView7" />
-
-            <TextView
-                android:id="@+id/addressBookPlace"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:layout_marginEnd="180dp"
-                android:fontFamily="@font/splinesansmedium"
-                android:text="Книга"
-                android:textSize="18sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/toolbar2" />
-
             <TextView
                 android:id="@+id/templatePlace"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="225dp"
-                android:textSize="18sp"
+                android:layout_marginTop="32dp"
                 android:fontFamily="@font/splinesansmedium"
-                android:text="Шаблон"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/downloadAddressBook" />
+                android:text="Шаблон: "
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="@+id/spinnerAddressBook"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/spinnerAddressBook"
+                app:layout_constraintTop_toBottomOf="@+id/spinnerAddressBook" />
+
+            <Spinner
+                android:id="@+id/spinnerAddressBook"
+                android:layout_width="330dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:layout_constraintStart_toStartOf="@+id/addressBookPlace"
+                app:layout_constraintTop_toBottomOf="@+id/addressBookPlace" />
+
+            <EditText
+                android:id="@+id/tempateText"
+                android:layout_width="330dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="28dp"
+                android:ems="10"
+                android:inputType="textMultiLine"
+                app:layout_constraintEnd_toEndOf="@+id/templatePlace"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/templatePlace"
+                app:layout_constraintTop_toBottomOf="@+id/templatePlace" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

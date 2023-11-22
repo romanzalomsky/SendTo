@@ -56,9 +56,7 @@ class LoginFragment : Fragment() {
         val email = binding.signInEmailInput.text.toString()
         val password = binding.signInPasswordInput.text.toString()
 
-        viewModel.onSignInClick(email, password)
-        Toast.makeText(requireActivity(), "Sign in Successfully", Toast.LENGTH_SHORT).show()
-        Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_statisticsFragment)
+        viewModel.onSignInClick(email, password, view)
     }
 
     override fun onDestroyView() {

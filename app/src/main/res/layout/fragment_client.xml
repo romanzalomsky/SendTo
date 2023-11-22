@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:backgroundTint="@color/white"
-    tools:context=".presentation.user.clients.add.ClientFragment">
+    tools:context=".presentation.user.clients.add.addClient.ClientFragment">
 
     <androidx.drawerlayout.widget.DrawerLayout
         android:layout_width="match_parent"

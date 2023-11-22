@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseAuth
 import com.zalomsky.sendto.domain.model.User
 import com.zalomsky.sendto.domain.usecase.AuthUseCase
+import com.zalomsky.sendto.domain.usecase.RegistrationUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -15,8 +16,12 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AuthFragmentViewModel@Inject constructor(
-
+    private val registrationUseCase: RegistrationUseCase
 ): ViewModel() {
 
-
+    fun onRegistrationClick(name: String, email: String, phone: String, password: String){
+        viewModelScope.launch {
+            registrationUseCase(name, email, phone, password)
+        }
+    }
 }

@@ -1,5 +1,6 @@
 package com.zalomsky.sendto.presentation.common.login
 
+import android.view.View
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.zalomsky.sendto.domain.model.User
@@ -19,9 +20,9 @@ class LoginFragmentViewModel@Inject constructor(
     private val _uiState = MutableStateFlow(User())
     val uiState: StateFlow<User> = _uiState.asStateFlow()
 
-    fun onSignInClick(email: String, password: String){
+    fun onSignInClick(email: String, password: String, view: View){
         viewModelScope.launch {
-            authUseCase(email, password)
+            authUseCase(email, password, view)
         }
     }
 }

@@ -5,10 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
@@ -23,6 +26,7 @@ import com.zalomsky.sendto.R
 import com.zalomsky.sendto.data.firebase.model.FirebaseConstants
 import com.zalomsky.sendto.databinding.FragmentStatisticsBinding
 import com.zalomsky.sendto.presentation.common.auth.AuthFragmentViewModel
+import kotlinx.coroutines.launch
 
 class StatisticsFragment : Fragment() {
 
@@ -32,7 +36,7 @@ class StatisticsFragment : Fragment() {
 
     private lateinit var databaseReference: DatabaseReference
 
-    private val authFragmentViewModel: AuthFragmentViewModel by viewModels()
+    private lateinit var viewModel: StatisticsFragmentViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,6 +46,8 @@ class StatisticsFragment : Fragment() {
 
         _binding = FragmentStatisticsBinding.inflate(inflater, container, false)
         val view = binding.root
+
+        viewModel = ViewModelProvider(requireActivity()).get(StatisticsFragmentViewModel::class.java)
 
         auth = Firebase.auth
 
@@ -60,29 +66,16 @@ class StatisticsFragment : Fragment() {
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
 
-/*        headerData(view)*/
-        sendsCount()
+        headerData(view)
+
         NavigationDrawerRoutes(navigationView, view, drawerLayout)
         return view
     }
 
-    private fun sendsCount(){
-        databaseReference = FirebaseDatabase.getInstance()
-            .getReference(FirebaseConstants.USER_KEY)
-            .child(FirebaseAuth.getInstance().currentUser!!.uid)
-            .child(FirebaseConstants.MESSAGE_KEY)
-        databaseReference.addValueEventListener(object : ValueEventListener{
-            override fun onDataChange(snapshot: DataSnapshot) {
-                binding.sendsCount.setText(snapshot.children.count().toString())
-            }
-            override fun onCancelled(error: DatabaseError) {}
-        })
-    }
-
-/*    private fun headerData(
+    private fun headerData(
         view: View
     ){
-        databaseReference = FirebaseDatabase.getInstance().getReference(SendToConstants.USER_KEY).child(FirebaseAuth.getInstance().currentUser!!.uid)
+        databaseReference = FirebaseDatabase.getInstance().getReference(FirebaseConstants.USER_KEY).child(FirebaseAuth.getInstance().currentUser!!.uid)
         databaseReference.addValueEventListener(object : ValueEventListener {
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -90,14 +83,14 @@ class StatisticsFragment : Fragment() {
                 val name = dataSnapshot.child("name").value.toString()
                 val email = dataSnapshot.child("email").value.toString()
 
-                view.findViewById<TextView>(R.id.nameTextView).setText(name)
-                view.findViewById<TextView>(R.id.emailTextView)?.setText(email)
-            }
-            override fun onCancelled(error: DatabaseError) {
+                viewModel.showHeaderData(name, email)
 
+                view.findViewById<TextView>(R.id.nameTextView).setText(name)
+                view.findViewById<TextView>(R.id.emailTextView).setText(email)
             }
+            override fun onCancelled(error: DatabaseError) {}
         })
-    }*/
+    }
 
     private fun NavigationDrawerRoutes(
         navigationView: NavigationView,

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
@@ -15,12 +16,15 @@ import com.zalomsky.sendto.R
 import com.zalomsky.sendto.data.firebase.model.FirebaseConstants
 import com.zalomsky.sendto.databinding.FragmentAddAddressBookBinding
 import com.zalomsky.sendto.domain.model.AddressBook
+import com.zalomsky.sendto.presentation.common.auth.AuthFragmentViewModel
 
 class AddAddressBookFragment : Fragment() {
 
     private lateinit var database: DatabaseReference
     private var _binding: FragmentAddAddressBookBinding? = null
     private val binding get() = _binding!!
+
+    private lateinit var viewModel: AddAddressBookViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,6 +34,8 @@ class AddAddressBookFragment : Fragment() {
 
         _binding = FragmentAddAddressBookBinding.inflate(inflater, container, false)
         val view = binding.root
+
+        viewModel = ViewModelProvider(requireActivity()).get(AddAddressBookViewModel::class.java)
 
         database = Firebase.database
             .getReference(FirebaseConstants.USER_KEY)
@@ -47,13 +53,9 @@ class AddAddressBookFragment : Fragment() {
             val id = database.push().key!!
             val name = binding.nameAddressBookEditText.text.toString()
 
-            val addressBook = AddressBook(id, name)
-
-            database.child(FirebaseConstants.ADDRESS_BOOK_KEY).child(id).setValue(addressBook).addOnSuccessListener {
-                Navigation.findNavController(view).navigate(R.id.action_addAddressBookFragment_to_addressBookFragment)
-                Toast.makeText(requireActivity(), "Книга добавлена", Toast.LENGTH_SHORT).show()
-            }
-
+            viewModel.onAddAddressBook(id, name)
+            Navigation.findNavController(view).navigate(R.id.action_addAddressBookFragment_to_addressBookFragment)
+            Toast.makeText(requireActivity(), "Книга добавлена", Toast.LENGTH_SHORT).show()
         }
     }
 }

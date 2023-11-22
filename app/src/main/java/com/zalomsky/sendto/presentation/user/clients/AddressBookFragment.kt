@@ -21,7 +21,8 @@ import com.zalomsky.sendto.R
 import com.zalomsky.sendto.data.firebase.model.FirebaseConstants
 import com.zalomsky.sendto.databinding.FragmentAddressBookBinding
 import com.zalomsky.sendto.domain.model.AddressBook
-import com.zalomsky.sendto.presentation.user.clients.add.AddressBookViewModel
+import com.zalomsky.sendto.presentation.user.clients.adapter.RecycleViewAdapter
+import com.zalomsky.sendto.presentation.user.clients.add.AddAddressBookViewModel
 
 class AddressBookFragment : Fragment() {
 
@@ -33,7 +34,8 @@ class AddressBookFragment : Fragment() {
     private lateinit var recycleView: RecyclerView
     private lateinit var list: ArrayList<AddressBook>
 
-    private val viewModel: AddressBookViewModel by activityViewModels ()
+    private val viewModel: AddAddressBookViewModel by activityViewModels ()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -88,13 +90,15 @@ class AddressBookFragment : Fragment() {
                     })
 
                     //todo: Create coroutine
-/*                    database.child(arguments?.getString("id").toString()).child(SendToConstants.CLIENTS_KEY)
-                    database.addValueEventListener(object : ValueEventListener{
-                        override fun onDataChange(snapshot: DataSnapshot) {
-                            view.findViewById<TextView>(R.id.amountClients).setText(snapshot.children.count().toString())
-                        }
-                        override fun onCancelled(error: DatabaseError) {}
-                    })*/
+/*                    lifecycleScope.launch {
+                        database.child(arguments?.getString("id").toString()).child(FirebaseConstants.CLIENTS_KEY)
+                        database.addValueEventListener(object : ValueEventListener{
+                            override fun onDataChange(snapshot: DataSnapshot) {
+                                view.findViewById<TextView>(R.id.amountClients).setText(snapshot.children.count().toString())
+                            }
+                            override fun onCancelled(error: DatabaseError) {}
+                        })
+                    }*/
                 }
                 else{
                     binding.empty.visibility = View.VISIBLE

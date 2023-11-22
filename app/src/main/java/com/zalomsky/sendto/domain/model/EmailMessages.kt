@@ -1,6 +1,5 @@
 package com.zalomsky.sendto.domain.model
 
-import java.util.Date
 
 data class EmailMessages(
 

@@ -1,5 +1,6 @@
 package com.zalomsky.sendto.data.firebase.di
 
+import android.view.View
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
@@ -25,4 +26,10 @@ object FirebaseModule {
     @Provides
     fun databaseUidReference(): DatabaseReference = FirebaseDatabase.getInstance().getReference(
         FirebaseConstants.USER_KEY).child(FirebaseAuth.getInstance().currentUser!!.uid)
+
+/*    @Provides
+    fun addressBookReference(): DatabaseReference = FirebaseDatabase.getInstance().getReference(
+        FirebaseConstants.USER_KEY).child(FirebaseAuth.getInstance().currentUser!!.uid)
+        .child(FirebaseConstants.ADDRESS_BOOK_KEY)*/
+
 }
