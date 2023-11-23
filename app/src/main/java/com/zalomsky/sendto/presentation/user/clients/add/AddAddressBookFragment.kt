@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
@@ -21,6 +22,7 @@ import com.zalomsky.sendto.presentation.common.auth.AuthFragmentViewModel
 class AddAddressBookFragment : Fragment() {
 
     private lateinit var database: DatabaseReference
+
     private var _binding: FragmentAddAddressBookBinding? = null
     private val binding get() = _binding!!
 
@@ -35,26 +37,29 @@ class AddAddressBookFragment : Fragment() {
         _binding = FragmentAddAddressBookBinding.inflate(inflater, container, false)
         val view = binding.root
 
+        binding.AddToolBar.setNavigationOnClickListener {
+            findNavController().navigateUp()
+        }
+
         viewModel = ViewModelProvider(requireActivity()).get(AddAddressBookViewModel::class.java)
 
         database = Firebase.database
             .getReference(FirebaseConstants.USER_KEY)
             .child(FirebaseAuth.getInstance().currentUser!!.uid)
 
-        createAddressBook(view)
+        createAddressBook()
 
         return view
     }
 
-    private fun createAddressBook(
-        view: View
-    ){
+    private fun createAddressBook(){
         binding.createButton.setOnClickListener {
             val id = database.push().key!!
             val name = binding.nameAddressBookEditText.text.toString()
 
             viewModel.onAddAddressBook(id, name)
-            Navigation.findNavController(view).navigate(R.id.action_addAddressBookFragment_to_addressBookFragment)
+            findNavController().navigateUp()
+
             Toast.makeText(requireActivity(), "Книга добавлена", Toast.LENGTH_SHORT).show()
         }
     }

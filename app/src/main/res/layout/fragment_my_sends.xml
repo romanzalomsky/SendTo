@@ -25,7 +25,7 @@
                 android:id="@+id/toolbar3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
+                android:background="@color/blue"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -36,7 +36,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/splinesansmedium"
                     android:text="Мои рассылки"
-                    android:textColor="@color/blue"
+                    android:textColor="@color/white"
                     android:textSize="22sp">
 
                 </TextView>

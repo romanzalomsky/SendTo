@@ -22,7 +22,7 @@
             android:background="@color/white">
 
             <androidx.appcompat.widget.Toolbar
-                android:id="@+id/profileToolBar"
+                android:id="@+id/addressBookToolBar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/blue"
@@ -62,7 +62,7 @@
                 android:textSize="17dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/profileToolBar"></TextView>
+                app:layout_constraintTop_toBottomOf="@+id/addressBookToolBar"></TextView>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/listView"
@@ -72,7 +72,7 @@
                 tools:listitem="@layout/list_item"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/profileToolBar" />
+                app:layout_constraintTop_toBottomOf="@+id/addressBookToolBar" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

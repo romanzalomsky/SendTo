@@ -23,7 +23,7 @@
             android:background="@color/white">
 
             <androidx.appcompat.widget.Toolbar
-                android:id="@+id/profileToolBar"
+                android:id="@+id/AddToolBar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/blue"
@@ -57,7 +57,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.497"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/profileToolBar"
+                app:layout_constraintTop_toBottomOf="@+id/AddToolBar"
                 app:startIconTint="@color/blue">
 
                 <com.google.android.material.textfield.TextInputEditText

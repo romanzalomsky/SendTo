@@ -24,13 +24,15 @@ class RecycleViewAdapter (
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false) //todo: check list_item
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
         return ViewHolder(itemView, listener)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentBook = list[position]
         holder.tvAddressBook.text = currentBook.name
+/*        val currentBookId = currentBook.id*/
+        holder.amountClients.text = currentBook.id
     }
 
     override fun getItemCount(): Int {
@@ -39,6 +41,7 @@ class RecycleViewAdapter (
 
     class ViewHolder(itemView: View, clickListener: onItemClickListener) : RecyclerView.ViewHolder(itemView){
         val tvAddressBook : TextView = itemView.findViewById(R.id.tvAddressBook)
+        val amountClients : TextView = itemView.findViewById(R.id.amountClients)
 
         init {
             itemView.setOnClickListener {

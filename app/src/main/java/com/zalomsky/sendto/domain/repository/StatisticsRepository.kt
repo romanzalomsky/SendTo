@@ -2,5 +2,5 @@ package com.zalomsky.sendto.domain.repository
 
 interface StatisticsRepository {
 
-    suspend fun getClients()
+    suspend fun getAddressBook()
 }

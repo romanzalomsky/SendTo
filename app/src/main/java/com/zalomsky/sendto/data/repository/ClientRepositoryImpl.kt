@@ -22,7 +22,6 @@ class ClientRepositoryImpl@Inject constructor(
         try {
             val client = Client(id, email, phone)
             databaseUidReference.child(FirebaseConstants.ADDRESS_BOOK_KEY).child(addressBookId).child(FirebaseConstants.CLIENTS_KEY).child(id).setValue(client).addOnSuccessListener {
-                Navigation.findNavController(view).navigate(R.id.action_clientFragment_to_addressBookFragment)
             }
         }catch (e: Exception){
             e.stackTrace

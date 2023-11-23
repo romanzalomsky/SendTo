@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -40,12 +41,18 @@ class ClientFragment : Fragment() {
         _binding = FragmentClientBinding.inflate(inflater, container, false)
         val view = binding.root
 
+        binding.toolbar3.setNavigationOnClickListener {
+            findNavController().navigateUp()
+        }
+
         viewModel = ViewModelProvider(requireActivity()).get(ClientFragmentViewModel::class.java)
 
         database = Firebase.database
             .getReference(FirebaseConstants.USER_KEY)
             .child(FirebaseAuth.getInstance().currentUser!!.uid)
             .child(FirebaseConstants.ADDRESS_BOOK_KEY)
+            .child(arguments?.getString("id")!!)
+            .child(FirebaseConstants.CLIENTS_KEY)
 
         database.addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -58,6 +65,7 @@ class ClientFragment : Fragment() {
                     val addressBookId = arguments?.getString("id")
 
                     viewModel.onAddClient(id, email, phone, view, addressBookId!!)
+                    findNavController().navigateUp()
                 }
             }
             override fun onCancelled(error: DatabaseError) {}

@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
@@ -42,6 +43,10 @@ class ProfileFragment : Fragment() {
         val view = binding.root
 
         viewModel = ViewModelProvider(requireActivity()).get(ProfileFragmentViewModel::class.java)
+
+        binding.profileToolBar.setNavigationOnClickListener {
+            findNavController().navigateUp()
+        }
 
         getDataFromDb()
 

@@ -11,7 +11,8 @@ class StatisticsRepositoryImpl@Inject constructor(
     private val databaseUidReference: DatabaseReference,
     private val auth: FirebaseAuth
 ): StatisticsRepository {
-    override suspend fun getClients() {
+
+    override suspend fun getAddressBook() {
 
 
     }

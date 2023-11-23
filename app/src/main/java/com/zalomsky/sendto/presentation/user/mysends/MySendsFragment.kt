@@ -13,6 +13,7 @@ import com.zalomsky.sendto.databinding.FragmentMySendsBinding
 class MySendsFragment : Fragment() {
 
     private lateinit var database: DatabaseReference
+
     private var _binding: FragmentMySendsBinding? = null
     private val binding get() = _binding!!
 

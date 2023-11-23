@@ -20,4 +20,15 @@ class AddressBookRepositoryImpl@Inject constructor(
         databaseReference.child(FirebaseConstants.ADDRESS_BOOK_KEY).child(id).setValue(addressBook)
     }
 
+    override suspend fun getAmount(amount: String) {
+        databaseReference.child(FirebaseConstants.ADDRESS_BOOK_KEY)
+        databaseReference.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+            }
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
+    }
 }

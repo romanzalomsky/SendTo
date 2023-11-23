@@ -56,7 +56,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardView4"
                 android:layout_width="370dp"
-                android:layout_height="170dp"
+                android:layout_height="240dp"
                 android:layout_marginTop="20dp"
                 android:background="@color/white"
                 app:cardCornerRadius="15dp"
@@ -65,21 +65,68 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
-                <TextView
-                    android:text="Email Рассылки"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:fontFamily="@font/splinesansmedium"></TextView>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp">
 
-                <TextView
-                    android:id="@+id/sendsCount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="10dp"
+                    <TextView
+                        android:text="Адресных книг используется: "
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:fontFamily="@font/splinesansmedium"></TextView>
+
+                    <TextView
+                        android:id="@+id/sendsCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/splinesansmedium"
+                        android:text="0"></TextView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
                     android:layout_marginTop="40dp"
-                    android:fontFamily="@font/splinesansmedium"
-                    android:text="0"></TextView>
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <org.eazegraph.lib.charts.PieChart
+                            xmlns:app="http://schemas.android.com/apk/res-auto"
+                            android:id="@+id/piechart"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:padding="6dp"
+                            android:layout_weight="1"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginBottom="15dp" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:layout_marginLeft="20dp"
+                            android:orientation="vertical"
+                            android:gravity="center_vertical">
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/newlistView"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp"
+                                tools:listitem="@layout/new_list_item" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
 
             </androidx.cardview.widget.CardView>
 

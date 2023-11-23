@@ -80,7 +80,13 @@ dependencies {
     //Retrofit
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
     implementation ("com.squareup.retrofit2:converter-gson:2.5.0")
+    
+    // For Card view
+    implementation ("androidx.cardview:cardview:1.0.0")
 
+    // Chart and graph library
+    implementation ("com.github.blackfizz:eazegraph:1.2.5l@aar")
+    implementation ("com.nineoldandroids:library:2.4.0")
 
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
