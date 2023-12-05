@@ -20,132 +20,8 @@
         tools:layout_width="match_parent">
 
     </ImageView>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/layout_password_editText"
-        android:layout_width="330dp"
-        android:layout_height="58dp"
-        android:layout_marginTop="15dp"
-        android:ems="10"
-        android:textColorHint="@color/white"
-        android:fontFamily="@font/splinesansmedium"
-        android:hint="@string/password_example"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="@+id/layout_phone_editText"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/layout_phone_editText"
-        app:layout_constraintTop_toBottomOf="@+id/layout_phone_editText"
-        app:startIconDrawable="@drawable/password"
-        app:startIconTint="@color/white">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/password_editText"
-            android:layout_width="330dp"
-            android:layout_height="wrap_content">
-
-        </com.google.android.material.textfield.TextInputEditText>
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/layout_confirm_password_editText"
-        android:layout_width="330dp"
-        android:layout_height="58dp"
-        android:layout_marginTop="15dp"
-        android:textColorHint="@color/white"
-        android:fontFamily="@font/splinesansmedium"
-        android:hint="@string/confirm_password_example"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="@+id/layout_password_editText"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/layout_password_editText"
-        app:layout_constraintTop_toBottomOf="@+id/layout_password_editText"
-        app:startIconDrawable="@drawable/password"
-        app:startIconTint="@color/white">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/confirm_password_editText"
-            android:layout_width="330dp"
-            android:layout_height="wrap_content">
-
-        </com.google.android.material.textfield.TextInputEditText>
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/layout_phone_editText"
-        android:layout_width="330dp"
-        android:layout_height="58dp"
-        android:layout_marginTop="15dp"
-        android:ems="10"
-        android:textColorHint="@color/white"
-        android:fontFamily="@font/splinesansmedium"
-        android:hint="@string/phone_example"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="@+id/layout_email_editText"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/layout_email_editText"
-        app:layout_constraintTop_toBottomOf="@+id/layout_email_editText"
-        app:startIconDrawable="@drawable/phone"
-        app:startIconTint="@color/white">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/phone_editText"
-            android:layout_width="330dp"
-            android:layout_height="wrap_content">
-
-        </com.google.android.material.textfield.TextInputEditText>
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout"
-        android:layout_width="330dp"
-        android:layout_height="58dp"
-        android:layout_marginTop="50dp"
-        android:fontFamily="@font/splinesansmedium"
-        android:hint="@string/name_example"
-        android:inputType="text"
-        android:textColorHint="@color/white"
-        app:layout_constraintEnd_toEndOf="@+id/textView"
-        app:layout_constraintStart_toStartOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:startIconDrawable="@drawable/person"
-        app:startIconTint="@color/white"
-        tools:ignore="MissingConstraints">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/name_editText"
-            android:layout_width="330dp"
-            android:layout_height="wrap_content">
-
-        </com.google.android.material.textfield.TextInputEditText>
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/layout_email_editText"
-        android:layout_width="330dp"
-        android:layout_height="58dp"
-        android:layout_marginTop="15dp"
-        android:textColorHint="@color/white"
-        android:fontFamily="@font/splinesansmedium"
-        android:hint="@string/email_example"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="@+id/textInputLayout"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textInputLayout"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
-        app:startIconDrawable="@drawable/email"
-        app:startIconTint="@color/white"
-        tools:ignore="MissingConstraints">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/email_editText"
-            android:layout_width="330dp"
-            android:layout_height="wrap_content">
-
-        </com.google.android.material.textfield.TextInputEditText>
-    </com.google.android.material.textfield.TextInputLayout>
-
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
@@ -154,72 +30,130 @@
         android:textColor="@color/white"
         android:textSize="65sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layout_sign_in_email_input"
+        android:layout_width="330dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="192dp"
+        android:ems="10"
+        android:fontFamily="@font/splinesansmedium"
+        android:hint="@string/email_example"
+        android:inputType="text"
+        android:textColorHint="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/textView3"
+        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintStart_toStartOf="@+id/textView3"
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        app:startIconDrawable="@drawable/email"
+        app:startIconTint="@color/white">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/sign_in_email_input"
+            android:layout_width="330dp"
+            android:layout_height="wrap_content"
+            app:cornerRadius="20dp">
+
+        </com.google.android.material.textfield.TextInputEditText>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layout_sign_in_password_input"
+        android:layout_width="330dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:fontFamily="@font/splinesansmedium"
+        android:hint="@string/password_example"
+        android:inputType="text"
+        android:textColorHint="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/layout_sign_in_email_input"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/layout_sign_in_email_input"
+        app:layout_constraintTop_toBottomOf="@+id/layout_sign_in_email_input"
+        app:startIconDrawable="@drawable/password"
+        app:startIconTint="@color/white">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/sign_in_password_input"
+            android:layout_width="330dp"
+            android:layout_height="wrap_content">
+
+        </com.google.android.material.textfield.TextInputEditText>
+    </com.google.android.material.textfield.TextInputLayout>
+
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/sign_up_button"
+        android:id="@+id/sign_in_button"
         android:layout_width="330dp"
         android:layout_height="60dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="45dp"
         android:backgroundTint="@color/white"
         android:fontFamily="@font/splinesansmedium"
-        android:text="@string/sign_up_button"
+        android:text="Войти"
         android:textColor="@color/black"
         android:textSize="20sp"
         app:cornerRadius="10dp"
-        app:layout_constraintEnd_toEndOf="@+id/layout_confirm_password_editText"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/layout_confirm_password_editText"
-        app:layout_constraintTop_toBottomOf="@+id/layout_confirm_password_editText" />
+        app:layout_constraintEnd_toEndOf="@+id/layout_sign_in_password_input"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/layout_sign_in_password_input"
+        app:layout_constraintTop_toBottomOf="@+id/layout_sign_in_password_input" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="155dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintStart_toStartOf="@+id/sign_in_button"
+        app:layout_constraintTop_toBottomOf="@+id/sign_in_button">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/google1_button"
+            android:layout_width="155dp"
+            android:layout_height="60dp"
+            android:backgroundTint="@color/white"
+            android:fontFamily="@font/splinesansmedium"
+            android:text="@string/google1_button"
+            android:textColor="@color/black"
+            android:textSize="18dp"
+            app:cornerRadius="10dp"
+            app:icon="@drawable/search"
+            app:iconTintMode="multiply"
+            app:layout_constraintStart_toStartOf="@+id/sign_in_button"
+            app:layout_constraintTop_toBottomOf="@+id/sign_in_button"
+            tools:ignore="MissingConstraints" />
+    </LinearLayout>
 
     <TextView
-        android:id="@+id/go_to_sign_in"
+        android:id="@+id/go_to_sign_up"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="28dp"
         android:clickable="true"
         android:fontFamily="@font/splinesansmedium"
-        android:text="@string/sign_in_text_button"
+        android:text="@string/sign_up_text_button"
         android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="@+id/facebook_sign_up_button"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toStartOf="@+id/google_sign_up_button"
-        app:layout_constraintTop_toBottomOf="@+id/google_sign_up_button"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintEnd_toEndOf="@+id/facebook_button"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
-    <Button
-        android:id="@+id/google_sign_up_button"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/facebook_button"
         android:layout_width="160dp"
         android:layout_height="60dp"
-        android:layout_marginTop="16dp"
-        android:backgroundTint="@color/white"
-        android:fontFamily="@font/splinesansmedium"
-        android:text="@string/google1_button"
-        android:textColor="@color/black"
-        android:textSize="18dp"
-        app:cornerRadius="10dp"
-        app:icon="@drawable/search"
-        app:iconTintMode="multiply"
-        app:layout_constraintStart_toStartOf="@+id/sign_up_button"
-        app:layout_constraintTop_toBottomOf="@+id/sign_up_button" />
-
-    <Button
-        android:id="@+id/facebook_sign_up_button"
-        android:layout_width="160dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="16dp"
         android:backgroundTint="@color/white"
         android:fontFamily="@font/splinesansmedium"
         android:text="@string/facebook_button"
         android:textColor="@color/black"
+        android:layout_marginTop="40dp"
         android:textSize="18dp"
         app:icon="@drawable/facebook"
         app:iconTintMode="multiply"
         app:cornerRadius="10dp"
-        app:layout_constraintEnd_toEndOf="@+id/sign_up_button"
-        app:layout_constraintTop_toBottomOf="@+id/sign_up_button" />
-
+        app:layout_constraintEnd_toEndOf="@+id/sign_in_button"
+        app:layout_constraintTop_toBottomOf="@+id/sign_in_button"
+        tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

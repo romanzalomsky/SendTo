@@ -6,39 +6,77 @@
     android:layout_height="match_parent"
     tools:context=".presentation.user.clients.template.AddTemplateFragment">
 
-    <androidx.drawerlayout.widget.DrawerLayout
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/createTemplateToolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:backgroundTint="@color/white">
+        android:layout_height="65dp"
+        android:background="@color/blue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/back">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/splinesansmedium"
+            android:text="Создать шаблон"
+            android:textColor="@color/white"
+            android:textSize="22sp">
+
+        </TextView>
+    </androidx.appcompat.widget.Toolbar>
+
+    <LinearLayout
+        android:id="@+id/linearLayout6"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/createTemplateToolbar">
+
+        <EditText
+            android:id="@+id/templateName"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:backgroundTint="@color/white">
+            android:layout_height="50dp"
+            android:layout_margin="30dp"
+            android:hint="Имя шаблона"></EditText>
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar2"
-                android:layout_width="match_parent"
-                android:layout_height="65dp"
-                android:background="@color/blue"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+    </LinearLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/splinesansmedium"
-                    android:text="Создать шаблон"
-                    android:textColor="@color/white"
-                    android:textSize="22sp">
+    <LinearLayout
+        android:id="@+id/linearLayout7"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
 
-                </TextView>
-            </androidx.appcompat.widget.Toolbar>
+        <EditText
+            android:id="@+id/templateText"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="30dp"
+            android:hint="Текст шаблона"></EditText>
 
+    </LinearLayout>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout7">
 
-    </androidx.drawerlayout.widget.DrawerLayout>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/createTemplateButton"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="30dp"
+            android:backgroundTint="@color/blue"
+            android:text="Создать">
+
+        </com.google.android.material.button.MaterialButton>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

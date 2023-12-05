@@ -3,12 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".presentation.common.SendTypeFragment">
+    tools:context=".presentation.common.BookOrTemplateFragment">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbarSendType"
+        android:id="@+id/toolbarBookOrTemplate"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@color/blue"
@@ -23,14 +22,14 @@
             android:layout_height="match_parent"
             android:textColor="@color/white"
             android:fontFamily="@font/splinesansmedium"
-            android:text="@string/choose_type_string"
+            android:text="Создать"
             android:textSize="22sp">
 
         </TextView>
     </androidx.appcompat.widget.Toolbar>
 
     <Button
-        android:id="@+id/buttonSms"
+        android:id="@+id/buttonAddressBook"
         android:layout_width="250dp"
         android:layout_height="70dp"
         android:layout_alignParentStart="true"
@@ -39,28 +38,28 @@
         android:layout_marginTop="208dp"
         android:backgroundTint="@color/blue"
         android:fontFamily="@font/splinesansmedium"
-        android:text="@string/send_sms_button"
+        android:text="Адресная книга"
         android:textSize="20dp"
         app:cornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="@+id/toolbarSendType"
-        app:layout_constraintTop_toBottomOf="@+id/toolbarSendType"
+        app:layout_constraintStart_toStartOf="@+id/toolbarBookOrTemplate"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarBookOrTemplate"
         tools:ignore="MissingConstraints"></Button>
 
     <Button
-        android:id="@+id/buttonEmail"
+        android:id="@+id/buttonTemplate"
         android:layout_width="250dp"
         android:layout_height="70dp"
-        android:text="@string/send_email_button"
+        android:text="Шаблон"
         android:fontFamily="@font/splinesansmedium"
         android:textSize="20dp"
         android:layout_marginTop="10dp"
         android:backgroundTint="@color/blue"
-        app:layout_constraintEnd_toEndOf="@+id/buttonSms"
+        app:layout_constraintEnd_toEndOf="@+id/buttonAddressBook"
         app:layout_constraintHorizontal_bias="0.521"
-        app:layout_constraintStart_toStartOf="@+id/buttonSms"
-        app:layout_constraintTop_toBottomOf="@+id/buttonSms"
+        app:layout_constraintStart_toStartOf="@+id/buttonAddressBook"
+        app:layout_constraintTop_toBottomOf="@+id/buttonAddressBook"
         app:cornerRadius="10dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

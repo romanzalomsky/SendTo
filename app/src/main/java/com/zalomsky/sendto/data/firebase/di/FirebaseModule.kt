@@ -26,10 +26,4 @@ object FirebaseModule {
     @Provides
     fun databaseUidReference(): DatabaseReference = FirebaseDatabase.getInstance().getReference(
         FirebaseConstants.USER_KEY).child(FirebaseAuth.getInstance().currentUser!!.uid)
-
-/*    @Provides
-    fun addressBookReference(): DatabaseReference = FirebaseDatabase.getInstance().getReference(
-        FirebaseConstants.USER_KEY).child(FirebaseAuth.getInstance().currentUser!!.uid)
-        .child(FirebaseConstants.ADDRESS_BOOK_KEY)*/
-
 }

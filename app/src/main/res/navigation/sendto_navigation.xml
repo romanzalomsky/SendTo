@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/authFragment"
-        android:name="com.zalomsky.sendto.presentation.common.auth.AuthFragment"
+        android:name="com.zalomsky.sendto.presentation.common.reg.RegistrationFragment"
         android:label="fragment_auth"
-        tools:layout="@layout/fragment_auth" >
+        tools:layout="@layout/fragment_registration" >
         <action
             android:id="@+id/action_authFragment_to_loginFragment"
             app:destination="@id/loginFragment"
@@ -23,9 +23,9 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.zalomsky.sendto.presentation.common.login.LoginFragment"
+        android:name="com.zalomsky.sendto.presentation.common.auth.AuthFragment"
         android:label="fragment_login"
-        tools:layout="@layout/fragment_login" >
+        tools:layout="@layout/fragment_auth" >
         <action
             android:id="@+id/action_loginFragment_to_authFragment"
             app:destination="@id/authFragment"
@@ -45,11 +45,6 @@
         <action
             android:id="@+id/action_statisticsFragment_to_profileFragment"
             app:destination="@id/profileFragment"
-            app:enterAnim="@android:anim/fade_in"
-            app:exitAnim="@android:anim/fade_out" />
-        <action
-            android:id="@+id/action_statisticsFragment_to_googleProfileFragment2"
-            app:destination="@id/googleProfileFragment"
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out" />
         <action
@@ -80,20 +75,10 @@
             app:exitAnim="@android:anim/fade_out" />
     </fragment>
     <fragment
-        android:id="@+id/googleProfileFragment"
-        android:name="com.zalomsky.sendto.presentation.common.profile.google.GoogleProfileFragment"
-        android:label="fragment_google_profile"
-        tools:layout="@layout/fragment_google_profile" />
-    <fragment
         android:id="@+id/sendFragment"
         android:name="com.zalomsky.sendto.presentation.user.send.email.SendEmailFragment"
         android:label="fragment_send"
         tools:layout="@layout/fragment_send" >
-        <action
-            android:id="@+id/action_sendFragment_to_addTemplateFragment"
-            app:destination="@id/addTemplateFragment"
-            app:enterAnim="@android:anim/fade_in"
-            app:exitAnim="@android:anim/fade_out" />
     </fragment>
     <fragment
         android:id="@+id/sendTypeFragment2"
@@ -121,11 +106,7 @@
         android:name="com.zalomsky.sendto.presentation.user.clients.AddressBookFragment"
         android:label="fragment_address_book"
         tools:layout="@layout/fragment_address_book" >
-        <action
-            android:id="@+id/action_addressBookFragment_to_addAddressBookFragment"
-            app:destination="@id/addAddressBookFragment"
-            app:enterAnim="@android:anim/fade_in"
-            app:exitAnim="@android:anim/fade_out" />
+
         <action
             android:id="@+id/action_addressBookFragment_to_clientFragment"
             app:destination="@id/clientFragment"
@@ -137,17 +118,21 @@
 
             </argument>-->
         </action>
+        <action
+            android:id="@+id/action_addressBookFragment_to_bookOrTemplateFragment"
+            app:destination="@id/bookOrTemplateFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
     </fragment>
     <fragment
         android:id="@+id/addAddressBookFragment"
         android:name="com.zalomsky.sendto.presentation.user.clients.add.AddAddressBookFragment"
         android:label="fragment_add_address_book"
         tools:layout="@layout/fragment_add_address_book" >
+
         <action
-            android:id="@+id/action_addAddressBookFragment_to_addressBookFragment"
-            app:destination="@id/addressBookFragment"
-            app:enterAnim="@android:anim/fade_in"
-            app:exitAnim="@android:anim/fade_out" />
+            android:id="@+id/action_addAddressBookFragment_to_bookOrTemplateFragment"
+            app:destination="@id/bookOrTemplateFragment" />
     </fragment>
     <fragment
         android:id="@+id/mySendsFragment"
@@ -169,5 +154,32 @@
         android:id="@+id/addTemplateFragment"
         android:name="com.zalomsky.sendto.presentation.user.clients.template.AddTemplateFragment"
         android:label="fragment_add_template"
-        tools:layout="@layout/fragment_add_template" />
+        tools:layout="@layout/fragment_add_template" >
+        <action
+            android:id="@+id/action_addTemplateFragment_to_bookOrTemplateFragment"
+            app:destination="@id/bookOrTemplateFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/bookOrTemplateFragment"
+        android:name="com.zalomsky.sendto.presentation.common.BookOrTemplateFragment"
+        android:label="fragment_book_or_template"
+        tools:layout="@layout/fragment_book_or_template" >
+        <action
+            android:id="@+id/action_bookOrTemplateFragment_to_addressBookFragment"
+            app:destination="@id/addressBookFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_bookOrTemplateFragment_to_addAddressBookFragment"
+            app:destination="@id/addAddressBookFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_bookOrTemplateFragment_to_addTemplateFragment"
+            app:destination="@id/addTemplateFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+    </fragment>
 </navigation>

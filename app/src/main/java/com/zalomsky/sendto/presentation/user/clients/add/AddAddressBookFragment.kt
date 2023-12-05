@@ -7,17 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import com.zalomsky.sendto.R
 import com.zalomsky.sendto.data.firebase.model.FirebaseConstants
 import com.zalomsky.sendto.databinding.FragmentAddAddressBookBinding
-import com.zalomsky.sendto.domain.model.AddressBook
-import com.zalomsky.sendto.presentation.common.auth.AuthFragmentViewModel
 
 class AddAddressBookFragment : Fragment() {
 

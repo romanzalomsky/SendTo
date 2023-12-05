@@ -6,103 +6,106 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.user.send.email.SendEmailFragment">
 
-    <androidx.drawerlayout.widget.DrawerLayout
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/emailSendToolBar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:backgroundTint="@color/white"
+        android:layout_height="65dp"
+        android:background="@color/blue"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/back">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:backgroundTint="@color/white">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/splinesansmedium"
+            android:textColor="@color/white"
+            android:text="@string/navigation_send"
+            android:textSize="22sp">
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar2"
-                android:layout_width="match_parent"
-                android:layout_height="65dp"
-                android:background="@color/blue"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:navigationIcon="@drawable/back">
+        </TextView>
+    </androidx.appcompat.widget.Toolbar>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/splinesansmedium"
-                    android:textColor="@color/white"
-                    android:text="@string/navigation_send"
-                    android:textSize="22sp">
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/emailSendToolBar">
 
-                </TextView>
-            </androidx.appcompat.widget.Toolbar>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/splinesansmedium"
+            android:text="Адресная книга: "
+            android:textSize="18sp" />
 
-            <Button
-                android:id="@+id/buttonSend"
-                android:layout_width="330dp"
-                android:layout_height="60dp"
-                android:layout_marginTop="208dp"
-                android:backgroundTint="@color/blue"
-                android:fontFamily="@font/splinesansmedium"
-                android:text="Отправить"
-                android:textSize="20sp"
-                app:cornerRadius="10dp"
-                app:layout_constraintEnd_toEndOf="@+id/tempateText"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/tempateText"
-                app:layout_constraintTop_toBottomOf="@+id/tempateText" />
+        <Spinner
+            android:id="@+id/spinnerAddressBook"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="30dp" />
+    </LinearLayout>
 
-            <TextView
-                android:id="@+id/addressBookPlace"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:fontFamily="@font/splinesansmedium"
-                android:text="Адресная книга: "
-                android:textSize="18sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.149"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/toolbar2" />
+    <LinearLayout
+        android:id="@+id/linearLayout5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
 
-            <TextView
-                android:id="@+id/templatePlace"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:fontFamily="@font/splinesansmedium"
-                android:text="Шаблон: "
-                android:textSize="18sp"
-                app:layout_constraintEnd_toEndOf="@+id/spinnerAddressBook"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/spinnerAddressBook"
-                app:layout_constraintTop_toBottomOf="@+id/spinnerAddressBook" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:fontFamily="@font/splinesansmedium"
+            android:text="Шаблон: "
+            android:textSize="18sp" />
 
-            <Spinner
-                android:id="@+id/spinnerAddressBook"
-                android:layout_width="330dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                app:layout_constraintStart_toStartOf="@+id/addressBookPlace"
-                app:layout_constraintTop_toBottomOf="@+id/addressBookPlace" />
+        <Spinner
+            android:id="@+id/spinnerTemplate"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp" />
+    </LinearLayout>
 
-            <EditText
-                android:id="@+id/tempateText"
-                android:layout_width="330dp"
-                android:layout_height="200dp"
-                android:layout_marginTop="28dp"
-                android:ems="10"
-                android:inputType="textMultiLine"
-                app:layout_constraintEnd_toEndOf="@+id/templatePlace"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/templatePlace"
-                app:layout_constraintTop_toBottomOf="@+id/templatePlace" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="572dp"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+<!--        <EditText
+            android:id="@+id/tempateText"
+            android:layout_width="wrap_content"
+            android:layout_height="200dp"
+            android:layout_marginTop="28dp"
+            android:ems="10"
+            android:inputType="textMultiLine" />-->
 
-    </androidx.drawerlayout.widget.DrawerLayout>
+        <Button
+            android:id="@+id/buttonSend"
+            android:layout_width="330dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="208dp"
+            android:gravity="center"
+            android:backgroundTint="@color/blue"
+            android:fontFamily="@font/splinesansmedium"
+            android:text="Отправить"
+            android:textSize="20sp"
+            app:cornerRadius="10dp" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

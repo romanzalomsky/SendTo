@@ -18,10 +18,11 @@ class ClientRepositoryImpl@Inject constructor(
     private val databaseUidReference: DatabaseReference,
     private val auth: FirebaseAuth,
 ): ClientRepository {
-    override suspend fun add(id: String, email: String, phone: String, view: View, addressBookId: String) {
+
+    override suspend fun add(id: String, email: String, phone: String, addressBookId: String, view: View) {
         try {
-            val client = Client(id, email, phone)
-            databaseUidReference.child(FirebaseConstants.ADDRESS_BOOK_KEY).child(addressBookId).child(FirebaseConstants.CLIENTS_KEY).child(id).setValue(client).addOnSuccessListener {
+            val client = Client(id, email, phone, addressBookId)
+            databaseUidReference.child(FirebaseConstants.CLIENTS_KEY).child(id).setValue(client).addOnSuccessListener {
             }
         }catch (e: Exception){
             e.stackTrace

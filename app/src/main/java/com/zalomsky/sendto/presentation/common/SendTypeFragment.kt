@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.zalomsky.sendto.R
 import com.zalomsky.sendto.databinding.FragmentSendTypeBinding
 import com.zalomsky.sendto.databinding.FragmentStatisticsBinding
@@ -22,6 +23,10 @@ class SendTypeFragment : Fragment() {
 
         _binding = FragmentSendTypeBinding.inflate(inflater, container, false)
         val view = binding.root
+
+        binding.toolbarSendType.setNavigationOnClickListener {
+            findNavController().navigateUp()
+        }
 
         sendTypeNavigation(view)
 

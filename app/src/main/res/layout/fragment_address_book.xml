@@ -6,77 +6,44 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.user.clients.AddressBookFragment">
 
-    <androidx.drawerlayout.widget.DrawerLayout
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/addressBookToolBar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="wrap_content"
+        android:background="@color/blue"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:openDrawer="start">
+        app:navigationIcon="@drawable/back">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/white">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/splinesansmedium"
+            android:text="Клиентская база"
+            android:textColor="@color/white"
+            android:textSize="22sp">
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/addressBookToolBar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/blue"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:navigationIcon="@drawable/back">
+        </TextView>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/splinesansmedium"
-                    android:text="Клиентская база"
-                    android:textColor="@color/white"
-                    android:textSize="22sp">
+        <ImageView
+            android:id="@+id/addAddressBook"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="120dp"
+            android:src="@drawable/add">
+        </ImageView>
+    </androidx.appcompat.widget.Toolbar>
 
-                </TextView>
-
-                <ImageView
-                    android:id="@+id/addAddressBook"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="120dp"
-                    android:src="@drawable/add">
-                </ImageView>
-            </androidx.appcompat.widget.Toolbar>
-
-            <TextView
-                android:id="@+id/empty"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                android:layout_marginTop="5dp"
-                android:fontFamily="@font/splinesansmedium"
-                android:text="Адресная книга отсутствует"
-                android:textSize="17dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/addressBookToolBar"></TextView>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/listView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                tools:listitem="@layout/list_item"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/addressBookToolBar" />
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.drawerlayout.widget.DrawerLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        tools:listitem="@layout/list_item"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addressBookToolBar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

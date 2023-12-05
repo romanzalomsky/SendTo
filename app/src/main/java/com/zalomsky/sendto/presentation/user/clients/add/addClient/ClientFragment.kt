@@ -17,12 +17,8 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import com.zalomsky.sendto.R
 import com.zalomsky.sendto.data.firebase.model.FirebaseConstants
 import com.zalomsky.sendto.databinding.FragmentClientBinding
-import com.zalomsky.sendto.domain.model.Client
-import com.zalomsky.sendto.presentation.common.login.LoginFragmentViewModel
-import com.zalomsky.sendto.presentation.user.clients.add.AddAddressBookViewModel
 
 class ClientFragment : Fragment() {
 
@@ -50,8 +46,8 @@ class ClientFragment : Fragment() {
         database = Firebase.database
             .getReference(FirebaseConstants.USER_KEY)
             .child(FirebaseAuth.getInstance().currentUser!!.uid)
-            .child(FirebaseConstants.ADDRESS_BOOK_KEY)
-            .child(arguments?.getString("id")!!)
+/*            .child(FirebaseConstants.ADDRESS_BOOK_KEY)
+            .child(arguments?.getString("id")!!)*/
             .child(FirebaseConstants.CLIENTS_KEY)
 
         database.addValueEventListener(object : ValueEventListener{
@@ -64,7 +60,7 @@ class ClientFragment : Fragment() {
 
                     val addressBookId = arguments?.getString("id")
 
-                    viewModel.onAddClient(id, email, phone, view, addressBookId!!)
+                    viewModel.onAddClient(id, email, phone, addressBookId!!, view)
                     findNavController().navigateUp()
                 }
             }

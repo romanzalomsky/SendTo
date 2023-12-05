@@ -1,14 +1,14 @@
 package com.zalomsky.sendto.presentation.user.clients
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.TextView
+import androidx.appcompat.widget.Toolbar
 import androidx.core.os.bundleOf
-import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,101 +21,62 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.zalomsky.sendto.R
 import com.zalomsky.sendto.data.firebase.model.FirebaseConstants
-import com.zalomsky.sendto.databinding.FragmentAddressBookBinding
 import com.zalomsky.sendto.domain.model.AddressBook
+import com.zalomsky.sendto.presentation.user.clients.AddressBookFragment.Companion.Path.addressBookPath
 import com.zalomsky.sendto.presentation.user.clients.adapter.RecycleViewAdapter
-import com.zalomsky.sendto.presentation.user.clients.add.AddAddressBookViewModel
 
 class AddressBookFragment : Fragment() {
 
     private lateinit var database: DatabaseReference
 
-    private var _binding: FragmentAddressBookBinding? = null
-    private val binding get() = _binding!!
-
     private lateinit var recycleView: RecyclerView
 
-    private lateinit var list: ArrayList<AddressBook>
-
+    @SuppressLint("MissingInflatedId")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        _binding = FragmentAddressBookBinding.inflate(inflater, container, false)
-        val view = binding.root
+        val view = inflater.inflate(R.layout.fragment_address_book, container, false)
+        val toolbar = view.findViewById<Toolbar>(R.id.addressBookToolBar)
+        val listView = view.findViewById<RecyclerView>(R.id.listView)
 
-        checkExists(view)
+        toolbar.setNavigationOnClickListener { findNavController().navigateUp() }
+
+        showAddressBookList(view)
         navigationAddressBook(view)
 
-        binding.addressBookToolBar.setNavigationOnClickListener {
-            findNavController().navigateUp()
-        }
-
-        recycleView = binding.listView
+        recycleView = listView
         recycleView.layoutManager = LinearLayoutManager(requireActivity())
         recycleView.setHasFixedSize(true)
-
-        list = arrayListOf()
 
         return view
     }
 
-    private fun checkExists(
-        view: View
-    ){
-        database = FirebaseDatabase.getInstance()
-            .getReference(FirebaseConstants.USER_KEY)
-            .child(FirebaseAuth.getInstance().currentUser!!.uid)
-            .child(FirebaseConstants.ADDRESS_BOOK_KEY)
-
+    private fun showAddressBookList(view: View){
+        database = addressBookPath
         database.addValueEventListener(object : ValueEventListener{
 
             override fun onDataChange(snapshot: DataSnapshot) {
-                list.clear()
-                if(snapshot.exists()){
-                    binding.empty.visibility = View.GONE
-                    recycleView.visibility = View.VISIBLE
-                    for (snap in snapshot.children){
-                        val data = snap.getValue(AddressBook::class.java)
-                        list.add(data!!)
-                        val idAddressBook = snap.getValue(AddressBook::class.java)!!.id
-/*                        val addressBookId = view?.findViewById<TextView>(R.id.amountClients)?.getText()*/
+                list_addressBook.clear()
 
-                        database = FirebaseDatabase.getInstance()
-                            .getReference(FirebaseConstants.USER_KEY)
-                            .child(FirebaseAuth.getInstance().currentUser!!.uid)
-                            .child(FirebaseConstants.ADDRESS_BOOK_KEY)
-                            .child(idAddressBook!!)
-                            .child(FirebaseConstants.CLIENTS_KEY)
-                        database.addValueEventListener(object : ValueEventListener{
-                            override fun onDataChange(snapshot: DataSnapshot) {
+                for (snap in snapshot.children){
+                    val data = snap.getValue(AddressBook::class.java)
+                    list_addressBook.add(data!!)
+                }
+                val adapter = RecycleViewAdapter(list_addressBook)
+                recycleView.adapter = adapter
 
-/*                                val amount = snapshot.children.count().toString()
-                                view?.findViewById<TextView>(R.id.amountClients)?.setText(amount)*/
-                            }
-                            override fun onCancelled(error: DatabaseError) {}
-                        })
+                adapter.setOnItemClickListener(object : RecycleViewAdapter.onItemClickListener{
+                    override fun onItemClick(position: Int) {
+
+                        val bundle = bundleOf("id" to list_addressBook[position].id)
+                        bundle.putString("id", list_addressBook[position].id)
+
+                        Navigation.findNavController(view).navigate(R.id.action_addressBookFragment_to_clientFragment, bundle)
                     }
-                    val adapter = RecycleViewAdapter(list)
-                    recycleView.adapter = adapter
-
-                    adapter.setOnItemClickListener(object : RecycleViewAdapter.onItemClickListener{
-                        override fun onItemClick(position: Int) {
-
-                            val bundle = bundleOf("id" to list[position].id)
-                            bundle.putString("id", list[position].id)
-
-                            Navigation.findNavController(view).navigate(R.id.action_addressBookFragment_to_clientFragment, bundle)
-                        }
-                    })
-                }
-                else{
-                    binding.empty.visibility = View.VISIBLE
-                    recycleView.visibility = View.GONE
-                }
+                })
             }
-
             override fun onCancelled(error: DatabaseError) {}
         })
     }
@@ -124,7 +85,19 @@ class AddressBookFragment : Fragment() {
         view: View
     ){
         view.findViewById<ImageView>(R.id.addAddressBook).setOnClickListener {
-            Navigation.findNavController(view).navigate(R.id.action_addressBookFragment_to_addAddressBookFragment)
+            Navigation.findNavController(view).navigate(R.id.action_addressBookFragment_to_bookOrTemplateFragment)
+        }
+    }
+
+    companion object {
+
+        private val list_addressBook: ArrayList<AddressBook> = arrayListOf()
+
+        object Path {
+            val addressBookPath = FirebaseDatabase.getInstance()
+                .getReference(FirebaseConstants.USER_KEY)
+                .child(FirebaseAuth.getInstance().currentUser!!.uid)
+                .child(FirebaseConstants.ADDRESS_BOOK_KEY)
         }
     }
 }

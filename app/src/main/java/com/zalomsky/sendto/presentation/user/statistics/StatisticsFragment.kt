@@ -7,10 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.compose.ui.graphics.Color
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
@@ -29,10 +27,6 @@ import com.zalomsky.sendto.R
 import com.zalomsky.sendto.data.firebase.model.FirebaseConstants
 import com.zalomsky.sendto.databinding.FragmentStatisticsBinding
 import com.zalomsky.sendto.domain.model.AddressBook
-import com.zalomsky.sendto.domain.model.Client
-import com.zalomsky.sendto.presentation.common.auth.AuthFragmentViewModel
-import com.zalomsky.sendto.presentation.user.clients.adapter.RecycleViewAdapter
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.eazegraph.lib.models.PieModel
 import kotlin.random.Random
@@ -91,6 +85,8 @@ class StatisticsFragment : Fragment() {
         lifecycleScope.launch {
             sendsStatistics(view)
         }
+        showMostPopular()
+        showUniqueClients()
 
         NavigationDrawerRoutes(navigationView, view, drawerLayout)
         return view
@@ -154,6 +150,56 @@ class StatisticsFragment : Fragment() {
         val green = Random.nextInt(256)
         val blue = Random.nextInt(256)
         return android.graphics.Color.argb(alpha, red, green, blue)
+    }
+
+    private fun showMostPopular(){
+        databaseReference = FirebaseDatabase.getInstance()
+            .getReference(FirebaseConstants.USER_KEY)
+            .child(FirebaseAuth.getInstance().currentUser!!.uid)
+            .child(FirebaseConstants.MESSAGE_KEY)
+        databaseReference.addValueEventListener(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val textCounts = HashMap<String, Int>()
+                for(snap in snapshot.children){
+                    val abName = snap.child("addressBook").value.toString()
+                    if (textCounts.containsKey(abName)) {
+                        val count = textCounts[abName]!!
+                        textCounts[abName] = count + 1
+                    } else {
+                        textCounts[abName] = 1
+                    }
+                }
+                var mostPopularText = ""
+                var maxCount = 0
+                for ((text, count) in textCounts) {
+                    if (count > maxCount) {
+                        maxCount = count
+                        mostPopularText = text
+                    }
+                }
+                binding.mostPopularBook.setText(mostPopularText)
+            }
+            override fun onCancelled(error: DatabaseError) {}
+        })
+    }
+
+    private fun showUniqueClients(){
+        databaseReference = FirebaseDatabase.getInstance()
+            .getReference(FirebaseConstants.USER_KEY)
+            .child(FirebaseAuth.getInstance().currentUser!!.uid)
+            .child(FirebaseConstants.CLIENTS_KEY)
+        databaseReference.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val emailSet = HashSet<String>()
+                for (snap in snapshot.children) {
+                    val email = snap.child("email").value.toString()
+                    emailSet.add(email)
+                }
+                val uniqueEmailCount = emailSet.size
+                binding.uniqueClients.setText(uniqueEmailCount.toString())
+            }
+            override fun onCancelled(error: DatabaseError) {}
+        })
     }
 
     private fun NavigationDrawerRoutes(

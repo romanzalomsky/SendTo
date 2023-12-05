@@ -7,9 +7,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.zalomsky.sendto.R
 import com.zalomsky.sendto.domain.model.AddressBook
-import com.zalomsky.sendto.presentation.ColorClass
-import com.zalomsky.sendto.presentation.user.clients.adapter.RecycleViewAdapter
-import kotlin.random.Random
 
 class RecycleViewNew(
     private val list: ArrayList<AddressBook>

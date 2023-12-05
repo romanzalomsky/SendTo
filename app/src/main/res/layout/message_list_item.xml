@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="110dp"
+    android:id="@+id/cardViewMessage"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardElevation="8dp"
+    app:cardCornerRadius="10dp"
+    android:layout_margin="10dp">
+
+    <TextView
+        android:id="@+id/tv_address_book"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Address book"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:gravity="top|center"
+        android:textColor="@color/blue"
+        android:textSize="25sp"
+        android:fontFamily="@font/splinesansmedium">
+    </TextView>
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="20dp"
+        android:gravity="top|center"
+        android:fontFamily="@font/splinesansmedium"
+        android:text="Клиентам доставлено " />
+
+    <TextView
+        android:id="@+id/amount_сlients"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="175dp"
+        android:layout_gravity=""
+        android:gravity="top|center"
+        android:fontFamily="@font/splinesansmedium"
+        android:text="0"></TextView>
+
+    <TextView
+        android:id="@+id/tv_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:layout_marginLeft="20dp"
+        android:textStyle="italic"
+        android:fontFamily="@font/splinesansmedium"
+        android:text="Текст рассылки "></TextView>
+
+</androidx.cardview.widget.CardView>

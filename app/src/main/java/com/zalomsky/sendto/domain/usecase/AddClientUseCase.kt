@@ -9,7 +9,7 @@ class AddClientUseCase@Inject constructor(
     private val clientRepository: ClientRepository
 ) {
 
-    suspend operator fun invoke(id: String, email: String, phone: String, view: View, addressBookId: String){
-        clientRepository.add(id, email, phone, view, addressBookId)
+    suspend operator fun invoke(id: String, email: String, phone: String, addressBookId: String, view: View){
+        clientRepository.add(id, email, phone, addressBookId, view)
     }
 }

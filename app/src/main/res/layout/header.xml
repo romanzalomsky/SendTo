@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="120dp"
     android:orientation="vertical"
-    android:background="@color/whiteBlue"
+    android:background="@color/blue"
     android:gravity="center">
 
     <LinearLayout
@@ -31,14 +31,17 @@
                 android:layout_marginStart="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:textColor="@color/white"
+                android:text="name"
                 android:fontFamily="@font/splinesansmedium">
             </TextView>
             <TextView
                 android:id="@+id/emailTextView"
                 android:layout_marginStart="10dp"
                 android:layout_width="match_parent"
+                android:textColor="@color/white"
                 android:layout_height="match_parent"
-                android:text=""
+                android:text="mail"
                 android:fontFamily="@font/splinesansmedium">
             </TextView>
         </LinearLayout>

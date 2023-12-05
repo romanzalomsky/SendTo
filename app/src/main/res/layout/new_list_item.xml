@@ -15,6 +15,7 @@
             android:id="@+id/chartPieceName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/splinesansmedium"
             android:text="R"
             android:paddingLeft="10dp"/>
 

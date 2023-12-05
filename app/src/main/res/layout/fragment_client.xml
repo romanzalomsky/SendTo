@@ -86,6 +86,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/phoneClient_editText"
                     android:layout_width="330dp"
+                    android:inputType="phone"
                     android:layout_height="wrap_content">
 
                 </com.google.android.material.textfield.TextInputEditText>

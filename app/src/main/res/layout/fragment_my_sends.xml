@@ -7,45 +7,36 @@
     android:backgroundTint="@color/backgroundColor"
     tools:context=".presentation.user.mysends.MySendsFragment">
 
-    <androidx.drawerlayout.widget.DrawerLayout
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/mySendsToolBar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:backgroundTint="@color/backgroundColor"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="wrap_content"
+        android:background="@color/blue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/back">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:backgroundTint="@color/backgroundColor">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/splinesansmedium"
+            android:text="Мои рассылки"
+            android:textColor="@color/white"
+            android:textSize="22sp">
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/blue"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:navigationIcon="@drawable/back">
+        </TextView>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/splinesansmedium"
-                    android:text="Мои рассылки"
-                    android:textColor="@color/white"
-                    android:textSize="22sp">
+    </androidx.appcompat.widget.Toolbar>
 
-                </TextView>
-
-            </androidx.appcompat.widget.Toolbar>
-
-            
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.drawerlayout.widget.DrawerLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/message_listView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        tools:listitem="@layout/message_list_item"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mySendsToolBar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

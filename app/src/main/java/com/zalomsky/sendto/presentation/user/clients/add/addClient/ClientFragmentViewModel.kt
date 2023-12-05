@@ -13,9 +13,9 @@ import javax.inject.Inject
 class ClientFragmentViewModel@Inject constructor(
     private val addClientUseCase: AddClientUseCase
 ): ViewModel() {
-    fun onAddClient(id: String, email: String, phone: String, view: View, addressBookId: String){
+    fun onAddClient(id: String, email: String, phone: String, addressBookId: String, view: View){
         viewModelScope.launch {
-            addClientUseCase(id, email, phone, view, addressBookId)
+            addClientUseCase(id, email, phone, addressBookId, view)
         }
     }
 }
