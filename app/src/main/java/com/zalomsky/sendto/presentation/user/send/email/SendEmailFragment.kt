@@ -98,7 +98,7 @@ class SendEmailFragment : Fragment() {
 
             val allClientsMail = clientsMailList.joinToString(", ")
 
-            val id = Database.database.push().key!!
+            val id = database.push().key!!
             val to = allClientsMail
             val from = Database.auth.currentUser?.email!!
 
@@ -120,7 +120,6 @@ class SendEmailFragment : Fragment() {
 
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-/*                binding.addressBookPlace.setText(parent?.getItemAtPosition(position).toString())*/
 
                 val selectedAddressBook = list[position]
 

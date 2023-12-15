@@ -18,6 +18,7 @@
         app:navigationIcon="@drawable/back">
 
         <TextView
+            android:id="@+id/texthahaaha"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/splinesansmedium"
@@ -27,23 +28,57 @@
 
         </TextView>
 
+        <Spinner
+            android:id="@+id/spinnerAB"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp" />
+
         <ImageView
             android:id="@+id/addAddressBook"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginLeft="120dp"
             android:src="@drawable/add">
         </ImageView>
     </androidx.appcompat.widget.Toolbar>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        tools:listitem="@layout/list_item"
+        android:layout_marginTop="12dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/findElement"
+        tools:listitem="@layout/list_item" />
+
+    <EditText
+        android:id="@+id/findElement"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:ems="10"
+        android:hint="Поиск"
+        android:inputType="text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addressBookToolBar" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:backgroundTint="@color/blue"
+        app:icon="@drawable/search"
+        app:iconPadding="5dp"
+        app:iconSize="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.3"
+        app:layout_constraintStart_toEndOf="@+id/findElement"
         app:layout_constraintTop_toBottomOf="@+id/addressBookToolBar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:id="@+id/cardViewAddress"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardElevation="8dp"
+    app:cardCornerRadius="10dp"
+    android:layout_margin="10dp">
+
+    <TextView
+        android:id="@+id/tvTemplateName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Название шаблона"
+        android:layout_gravity="top|center"
+        android:layout_marginTop="15dp"
+        android:gravity="top|center"
+        android:textColor="@color/blue"
+        android:textSize="15sp"
+        android:fontFamily="@font/splinesansmedium">
+    </TextView>
+
+</androidx.cardview.widget.CardView>

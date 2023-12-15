@@ -2,13 +2,19 @@ package com.zalomsky.sendto.presentation.user.clients
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
+import android.widget.Spinner
+import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.core.os.bundleOf
+import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -24,6 +30,8 @@ import com.zalomsky.sendto.data.firebase.model.FirebaseConstants
 import com.zalomsky.sendto.domain.model.AddressBook
 import com.zalomsky.sendto.presentation.user.clients.AddressBookFragment.Companion.Path.addressBookPath
 import com.zalomsky.sendto.presentation.user.clients.adapter.RecycleViewAdapter
+import com.zalomsky.sendto.presentation.user.statistics.RecycleViewNew
+
 
 class AddressBookFragment : Fragment() {
 
@@ -33,18 +41,24 @@ class AddressBookFragment : Fragment() {
 
     @SuppressLint("MissingInflatedId")
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
         val view = inflater.inflate(R.layout.fragment_address_book, container, false)
         val toolbar = view.findViewById<Toolbar>(R.id.addressBookToolBar)
         val listView = view.findViewById<RecyclerView>(R.id.listView)
+        val searchButton = view.findViewById<Button>(R.id.buttonSearch)
+        val spinnerAB: Spinner = view.findViewById(R.id.spinnerAB)
 
         toolbar.setNavigationOnClickListener { findNavController().navigateUp() }
 
         showAddressBookList(view)
         navigationAddressBook(view)
+        searchButton.setOnClickListener { searchAB(view) }
+        onSorted(view, spinnerAB)
+
 
         recycleView = listView
         recycleView.layoutManager = LinearLayoutManager(requireActivity())
@@ -81,6 +95,79 @@ class AddressBookFragment : Fragment() {
         })
     }
 
+    private fun searchAB(view: View){
+        database = addressBookPath
+        database.addValueEventListener(object : ValueEventListener{
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+                search_list_addressBook.clear()
+
+                for (childSnapshot in snapshot.children) {
+                    val data = childSnapshot.getValue(AddressBook::class.java)
+                    data?.let { search_list_addressBook.add(it) }
+                }
+
+                val filteredList = ArrayList<AddressBook>(search_list_addressBook)
+                val searchPer = view.findViewById<EditText>(R.id.findElement).text.toString()
+                val query = searchPer
+                if (query.isNotEmpty()) {
+                    filteredList.clear()
+                    for (data in search_list_addressBook) {
+                        if (data.name?.contains(query, ignoreCase = true) == true) {
+                            filteredList.add(data)
+                        }
+                    }
+                }
+                val adapter = RecycleViewNew(filteredList)
+                recycleView.adapter = adapter
+/*                val searchPer = view.findViewById<EditText>(R.id.findElement).text.toString()
+                val addressBook = AddressBook()
+                val filteredData = snapshot.children.filter { childSnapshot ->
+                    childSnapshot.child(addressBook.name.toString()).getValue(String::class.java)?.contains(searchPer, ignoreCase = true) == true
+                }*/
+
+            }
+            override fun onCancelled(error: DatabaseError) {}
+        })
+    }
+
+    private fun onSorted(view: View, spinnerAB: Spinner){
+        val adapter = ArrayAdapter(
+            requireActivity(),
+            androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
+            sortedList.map { it }
+        )
+        spinnerAB.adapter = adapter
+
+        spinnerAB.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+
+                val selectedSortedMethod = sortedList[position]
+
+                if(selectedSortedMethod == "a-z"){
+                    database = addressBookPath
+                    database.addValueEventListener(object : ValueEventListener{
+                        override fun onDataChange(snapshot: DataSnapshot) {
+                            new_list_addressBook.clear()
+                            for (childSnapshot in snapshot.children) {
+                                val data = childSnapshot.getValue(AddressBook::class.java)
+                                data?.let { new_list_addressBook.add(it) }
+                            }
+
+                            new_list_addressBook.sortBy { it.name }
+
+                            recycleView.adapter = RecycleViewNew(new_list_addressBook)
+                        }
+                        override fun onCancelled(error: DatabaseError) {}
+                    })
+                }
+            }
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+        }
+
+    }
+
     private fun navigationAddressBook(
         view: View
     ){
@@ -92,6 +179,9 @@ class AddressBookFragment : Fragment() {
     companion object {
 
         private val list_addressBook: ArrayList<AddressBook> = arrayListOf()
+        val sortedList: ArrayList<String> = arrayListOf("", "a-z")
+        private val new_list_addressBook: ArrayList<AddressBook> = arrayListOf()
+        private val search_list_addressBook: ArrayList<AddressBook> = arrayListOf()
 
         object Path {
             val addressBookPath = FirebaseDatabase.getInstance()

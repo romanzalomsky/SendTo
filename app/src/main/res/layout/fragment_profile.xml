@@ -51,15 +51,24 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/nameEdit"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_name_input"
                 android:layout_width="220dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="35dp"
                 android:ems="10"
                 android:fontFamily="@font/splinesansmedium"
+                android:hint="Имя"
                 android:inputType="text"
-                android:text="@string/username_example" />
+                android:textColorHint="@color/white">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/nameEdit"
+                    android:layout_width="220dp"
+                    android:layout_height="wrap_content">
+
+                </com.google.android.material.textfield.TextInputEditText>
+            </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:id="@+id/emailEdit"
@@ -69,7 +78,7 @@
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/splinesansmedium"
                 android:gravity="center_vertical"
-                android:text="почта"
+                android:hint="почта"
                 android:textSize="20sp" />
         </LinearLayout>
 

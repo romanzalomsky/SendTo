@@ -200,7 +200,7 @@
         android:textColor="@color/black"
         android:textSize="18dp"
         app:cornerRadius="10dp"
-        app:icon="@drawable/search"
+        app:icon="@drawable/searchh"
         app:iconTintMode="multiply"
         app:layout_constraintStart_toStartOf="@+id/sign_up_button"
         app:layout_constraintTop_toBottomOf="@+id/sign_up_button" />

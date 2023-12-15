@@ -84,12 +84,8 @@ dependencies {
     //Coil
     implementation ("io.coil-kt:coil:1.1.1")
 
-    //Picasso
-    implementation ("com.squareup.picasso:picasso:2.71828")
-
     // For Card view
     implementation ("androidx.cardview:cardview:1.0.0")
-
     // Chart and graph library
     implementation ("com.github.blackfizz:eazegraph:1.2.5l@aar")
     implementation ("com.nineoldandroids:library:2.4.0")

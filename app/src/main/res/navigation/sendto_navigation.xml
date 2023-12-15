@@ -62,6 +62,11 @@
             app:destination="@id/mySendsFragment"
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_statisticsFragment_to_templateFragment"
+            app:destination="@id/templateFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -182,4 +187,9 @@
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out" />
     </fragment>
+    <fragment
+        android:id="@+id/templateFragment"
+        android:name="com.zalomsky.sendto.presentation.user.clients.template.TemplateFragment"
+        android:label="fragment_template"
+        tools:layout="@layout/fragment_template" />
 </navigation>

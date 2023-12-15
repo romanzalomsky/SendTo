@@ -5,4 +5,6 @@ interface AddressBookRepository {
     suspend fun add(id: String, name: String)
 
     suspend fun getAmount(amount: String)
+
+    suspend fun delete(id: String)
 }

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.ViewModelProvider
@@ -15,6 +16,8 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
@@ -27,25 +30,20 @@ import com.zalomsky.sendto.R
 import com.zalomsky.sendto.data.firebase.model.FirebaseConstants
 import com.zalomsky.sendto.databinding.FragmentStatisticsBinding
 import com.zalomsky.sendto.domain.model.AddressBook
+import com.zalomsky.sendto.presentation.user.statistics.StatisticsFragment.Companion.Path.addressBook
+import com.zalomsky.sendto.presentation.user.statistics.StatisticsFragment.Companion.Path.clientsPath
+import com.zalomsky.sendto.presentation.user.statistics.StatisticsFragment.Companion.Path.messagePath
+import com.zalomsky.sendto.presentation.user.statistics.StatisticsFragment.Companion.Path.userPath
 import kotlinx.coroutines.launch
+import org.eazegraph.lib.charts.PieChart
 import org.eazegraph.lib.models.PieModel
 import kotlin.random.Random
 
 class StatisticsFragment : Fragment() {
 
-    private lateinit var auth: FirebaseAuth
-
-    private var _binding: FragmentStatisticsBinding? = null
-
-    private val binding get() = _binding!!
-
-    private lateinit var databaseReference: DatabaseReference
-
-    private lateinit var viewModel: StatisticsFragmentViewModel
-
-    private lateinit var list: ArrayList<AddressBook>
-
-    private lateinit var recycleView: RecyclerView
+    private val viewModel: StatisticsFragmentViewModel by lazy {
+        ViewModelProvider(requireActivity()).get(StatisticsFragmentViewModel::class.java)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -53,20 +51,16 @@ class StatisticsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        _binding = FragmentStatisticsBinding.inflate(inflater, container, false)
-        val view = binding.root
+        val view = inflater.inflate(R.layout.fragment_statistics, container, false)
+        val list = view.findViewById<RecyclerView>(R.id.newlistView)
+        val toolbar = view.findViewById<Toolbar>(R.id.toolbar)
+        val drawerLayout = view.findViewById<DrawerLayout>(R.id.drawer_layout)
+        val navigationView = view.findViewById<NavigationView>(R.id.nav_view)
+        val pieChart = view.findViewById<PieChart>(R.id.piechart)
 
-        viewModel = ViewModelProvider(requireActivity()).get(StatisticsFragmentViewModel::class.java)
-        list = arrayListOf()
-        auth = Firebase.auth
-
-        recycleView = binding.newlistView
+        recycleView = list
         recycleView.layoutManager = LinearLayoutManager(requireActivity())
         recycleView.setHasFixedSize(true)
-
-        val drawerLayout = binding.drawerLayout
-        val navigationView = binding.navView
-        val toolbar = binding.toolbar
 
         navigationView.bringToFront()
         val toggle = ActionBarDrawerToggle(
@@ -79,25 +73,19 @@ class StatisticsFragment : Fragment() {
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
 
-        lifecycleScope.launch {
-            headerData(view)
-        }
-        lifecycleScope.launch {
-            sendsStatistics(view)
-        }
-        showMostPopular()
-        showUniqueClients()
+        lifecycleScope.launch { headerData(view) }
+        lifecycleScope.launch { sendsStatistics(view, pieChart) }
+        showMostPopular(view)
+        showUniqueClients(view)
 
         NavigationDrawerRoutes(navigationView, view, drawerLayout)
         return view
     }
 
-    private fun headerData(
-        view: View
-    ){
-        databaseReference = FirebaseDatabase.getInstance().getReference(FirebaseConstants.USER_KEY).child(FirebaseAuth.getInstance().currentUser!!.uid)
-        databaseReference.addValueEventListener(object : ValueEventListener {
+    private fun headerData(view: View){
 
+        databaseReference = userPath
+        databaseReference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
 
                 val name = dataSnapshot.child("name").value.toString()
@@ -105,22 +93,17 @@ class StatisticsFragment : Fragment() {
 
                 viewModel.showHeaderData(name, email)
 
-                view?.findViewById<TextView>(R.id.nameTextView)?.setText(name)
-                view?.findViewById<TextView>(R.id.emailTextView)?.setText(email)
+                view.findViewById<TextView>(R.id.nameTextView)?.setText(name)
+                view.findViewById<TextView>(R.id.emailTextView)?.setText(email)
             }
             override fun onCancelled(error: DatabaseError) {}
         })
     }
 
-    private fun sendsStatistics(
-        view: View
-    ){
-        databaseReference = FirebaseDatabase.getInstance()
-            .getReference(FirebaseConstants.USER_KEY)
-            .child(FirebaseAuth.getInstance().currentUser!!.uid)
-            .child(FirebaseConstants.ADDRESS_BOOK_KEY)
-        databaseReference.addValueEventListener(object : ValueEventListener {
+    private fun sendsStatistics(view: View, pieChart: PieChart){
 
+        databaseReference = addressBook
+        databaseReference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 list.clear()
                 if(dataSnapshot.exists()){
@@ -128,12 +111,12 @@ class StatisticsFragment : Fragment() {
 
                     viewModel.getAmountAddressBook(amount)
 
-                    view?.findViewById<TextView>(R.id.sendsCount)?.setText(amount)
+                    view.findViewById<TextView>(R.id.sendsCount)?.setText(amount)
 
                     for (snap in dataSnapshot.children){
                         val addressBook = snap.getValue(AddressBook::class.java)
                         val name = snap.getValue(AddressBook::class.java)?.name
-                        binding.piechart.addPieSlice(PieModel(name, 13f, generateRandomColor()))
+                        pieChart.addPieSlice(PieModel(name, 13f, generateRandomColor()))
                         list.add(addressBook!!)
                     }
                     val adapter = RecycleViewNew(list)
@@ -152,11 +135,10 @@ class StatisticsFragment : Fragment() {
         return android.graphics.Color.argb(alpha, red, green, blue)
     }
 
-    private fun showMostPopular(){
-        databaseReference = FirebaseDatabase.getInstance()
-            .getReference(FirebaseConstants.USER_KEY)
-            .child(FirebaseAuth.getInstance().currentUser!!.uid)
-            .child(FirebaseConstants.MESSAGE_KEY)
+    private fun showMostPopular(view: View){
+
+        val mostPopularBook = view.findViewById<TextView>(R.id.most_popular_book)
+        databaseReference = messagePath
         databaseReference.addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 val textCounts = HashMap<String, Int>()
@@ -177,17 +159,16 @@ class StatisticsFragment : Fragment() {
                         mostPopularText = text
                     }
                 }
-                binding.mostPopularBook.setText(mostPopularText)
+                mostPopularBook.setText(mostPopularText)
             }
             override fun onCancelled(error: DatabaseError) {}
         })
     }
 
-    private fun showUniqueClients(){
-        databaseReference = FirebaseDatabase.getInstance()
-            .getReference(FirebaseConstants.USER_KEY)
-            .child(FirebaseAuth.getInstance().currentUser!!.uid)
-            .child(FirebaseConstants.CLIENTS_KEY)
+    private fun showUniqueClients(view: View){
+
+        val uniqueClients = view.findViewById<TextView>(R.id.unique_clients)
+        databaseReference = clientsPath
         databaseReference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val emailSet = HashSet<String>()
@@ -196,7 +177,7 @@ class StatisticsFragment : Fragment() {
                     emailSet.add(email)
                 }
                 val uniqueEmailCount = emailSet.size
-                binding.uniqueClients.setText(uniqueEmailCount.toString())
+                uniqueClients.setText(uniqueEmailCount.toString())
             }
             override fun onCancelled(error: DatabaseError) {}
         })
@@ -212,6 +193,7 @@ class StatisticsFragment : Fragment() {
         val statistics = R.id.nav_statistics
         val addressBook = R.id.nav_client_databases
         val mySends = R.id.nav_my_sends
+        val templates = R.id.nav_templates
 
         navigationView.setNavigationItemSelectedListener {
             when (it.itemId){
@@ -235,8 +217,37 @@ class StatisticsFragment : Fragment() {
                     drawerLayout.closeDrawer(GravityCompat.START, true)
                     true
                 }
+                templates -> {
+                    Navigation.findNavController(view).navigate(R.id.action_statisticsFragment_to_templateFragment)
+                    true
+                }
                 else -> false
             }
+        }
+    }
+
+    companion object {
+
+        private var list: ArrayList<AddressBook> = arrayListOf()
+        private lateinit var databaseReference: DatabaseReference
+        private lateinit var recycleView: RecyclerView
+
+        object Path {
+            internal val clientsPath = FirebaseDatabase.getInstance()
+                .getReference(FirebaseConstants.USER_KEY)
+                .child(FirebaseAuth.getInstance().currentUser!!.uid)
+                .child(FirebaseConstants.CLIENTS_KEY)
+            internal val messagePath = FirebaseDatabase.getInstance()
+                .getReference(FirebaseConstants.USER_KEY)
+                .child(FirebaseAuth.getInstance().currentUser!!.uid)
+                .child(FirebaseConstants.MESSAGE_KEY)
+            internal val addressBook = FirebaseDatabase.getInstance()
+                .getReference(FirebaseConstants.USER_KEY)
+                .child(FirebaseAuth.getInstance().currentUser!!.uid)
+                .child(FirebaseConstants.ADDRESS_BOOK_KEY)
+            internal val userPath = FirebaseDatabase.getInstance()
+                .getReference(FirebaseConstants.USER_KEY)
+                .child(FirebaseAuth.getInstance().currentUser!!.uid)
         }
     }
 }

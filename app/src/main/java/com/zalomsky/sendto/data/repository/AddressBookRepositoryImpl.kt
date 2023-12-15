@@ -36,4 +36,15 @@ class AddressBookRepositoryImpl@Inject constructor(
             }
         })
     }
+
+    override suspend fun delete(id: String) {
+        databaseReference.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+            }
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
+    }
 }

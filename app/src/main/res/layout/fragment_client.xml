@@ -42,6 +42,14 @@
                     android:textSize="22sp">
 
                 </TextView>
+
+                <ImageView
+                    android:id="@+id/deleteAB"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="100dp"
+                    android:src="@drawable/delete">
+                </ImageView>
             </androidx.appcompat.widget.Toolbar>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -102,10 +110,10 @@
                 android:text="Создать"
                 android:textSize="20sp"
                 app:cornerRadius="10dp"
-                app:layout_constraintEnd_toEndOf="@+id/button"
+                app:layout_constraintEnd_toEndOf="@+id/buttonDelete"
                 app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="@+id/button"
-                app:layout_constraintTop_toBottomOf="@+id/button" />
+                app:layout_constraintStart_toStartOf="@+id/buttonDelete"
+                app:layout_constraintTop_toBottomOf="@+id/buttonDelete" />
 
             <TextView
                 android:id="@+id/textView6"
@@ -133,11 +141,11 @@
                 app:layout_constraintTop_toBottomOf="@+id/textInputLayout12" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/buttonDelete"
                 android:layout_width="330dp"
                 android:layout_height="60dp"
                 android:layout_marginTop="30dp"
-                android:text="Загрузить базу из файла"
+                android:text="Удалить"
                 android:textSize="20dp"
                 android:fontFamily="@font/splinesansmedium"
                 android:backgroundTint="@color/blue"

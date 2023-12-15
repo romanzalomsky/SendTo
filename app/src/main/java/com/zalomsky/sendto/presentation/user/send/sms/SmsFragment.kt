@@ -13,30 +13,24 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import android.widget.Toast
-import androidx.appcompat.R
+import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat.RECEIVER_EXPORTED
 import androidx.core.content.ContextCompat.registerReceiver
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.zalomsky.sendto.data.firebase.model.FirebaseConstants
 import com.zalomsky.sendto.databinding.FragmentSmsBinding
-import com.zalomsky.sendto.domain.model.AddressBook
 import com.zalomsky.sendto.domain.model.SmsMessage
 
 class SmsFragment : Fragment() {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var database: DatabaseReference
-
     private var _binding: FragmentSmsBinding? = null
     private val binding get() = _binding!!
 
@@ -95,16 +89,6 @@ class SmsFragment : Fragment() {
             smsManager.sendTextMessage(phoneNumber, null, message, null, null)
         }
 
-/*        database = FirebaseDatabase.getInstance().getReference(FirebaseConstants.USER_KEY)
-            .child(FirebaseAuth.getInstance().currentUser!!.uid)
-            .child(FirebaseConstants.SMS_MESSAGE_KEY)
-        database.addValueEventListener(object : ValueEventListener {
-
-            override fun onDataChange(snapshot: DataSnapshot) {
-
-            }
-            override fun onCancelled(error: DatabaseError) {}
-        })*/
 
         binding.idBtnSendMessage.setOnClickListener {
 

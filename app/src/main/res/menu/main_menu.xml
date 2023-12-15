@@ -23,6 +23,10 @@
                 android:id="@+id/nav_client_databases"
                 android:icon="@drawable/database"
                 android:title="@string/navigation_client_databases"/>
+            <item
+                android:id="@+id/nav_templates"
+                android:icon="@drawable/template"
+                android:title="Шаблон"/>
         </menu>
     </item>
 

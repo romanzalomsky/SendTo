@@ -7,12 +7,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.zalomsky.sendto.R
@@ -37,7 +40,7 @@ class ProfileFragment : Fragment() {
         toolBar.setNavigationOnClickListener { findNavController().navigateUp() }
 
         getUsersInfo(view)
-/*        updateData(view)*/
+        updateData(view)
         navigationProfile(view)
 
         return view
@@ -45,11 +48,16 @@ class ProfileFragment : Fragment() {
 
     private fun getUsersInfo(view: View){ viewModel.onGetUsersData(view) }
 
-    private fun updateData(name: String, phone: String, email: String, password: String, view: View){
+    private fun updateData(view: View){
 
         val updateButton = view.findViewById<Button>(R.id.updateButton)
         view.apply {
             updateButton.setOnClickListener {
+                val name = view.findViewById<TextInputEditText>(R.id.nameEdit).text.toString()
+                val email = view.findViewById<TextView>(R.id.emailEdit).text.toString()
+                val phone = view.findViewById<TextView>(R.id.phoneEdit).text.toString()
+                val password = view.findViewById<TextView>(R.id.passwordEdit).text.toString()
+
                 viewModel.onUpdateButtonClick(name, phone, email, password)
                 Toast.makeText(requireActivity(), "Данные обновлены", Toast.LENGTH_SHORT).show()
             }
